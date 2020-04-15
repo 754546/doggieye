@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1.0,user-scalable=no">
+		<title>语音</title>
+	</head>
+	<style type="text/css">
+		#yuyin{
+			width: 200px;
+			height: 30px;
+			margin: 20px auto;
+			text-align: center;
+			line-height: 30px;
+		}
+		.play{
+			width: 200px;
+			height: 40px;
+			margin: 20px auto;
+			text-align: center;
+			line-height: 40px;
+			background-color: aquamarine;
+			border: 0;
+			border-radius: 20px;
+		}
+	</style>
+	<body>
+		<input type="text" name="yuyin" id="yuyin"/>
+		<div id="playTips" ></div>
+		<button onclick="anounce('海伦')" class="play">播放</button>
+		<button onclick="play()" class="play" >播放</button>
+	</body>
+	<script>
+	function anounce(txt){
+		text=document.getElementById("yuyin").value;
+	    document.getElementById("playTips").innerHTML = "<audio id='audios' src='http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text="+ text +"'></audio>";
+	}
+	function play(){
+		var audio = document.getElementById('audios');
+		audio.play(); 
+	}
+	
+	</script>
+
+</html>

@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page.data-v-1b6dc0e3 {
+  padding: 0;
+  margin: 0;
+}
+.imgListD image.data-v-1b6dc0e3 {
+  width: 100%;
+  display: block;
+}
+.tab_content.data-v-1b6dc0e3 {
+  margin-top: 20rpx;
+}
+.storyTitle.data-v-1b6dc0e3 {
+  z-index: 666;
+  width: 40rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 19rpx;
+  min-height: 40rpx;
+  max-height: 286rpx;
+  overflow: hidden;
+}
+.storyTitle text.data-v-1b6dc0e3 {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24rpx;
+    word-wrap: break-word;
+    font-family: Source Han Sans CN;
+    color: #1d201f;
+    line-height: 35rpx;
+    background-color: #ffea00;
+}
+.storyTitle text.data-v-1b6dc0e3:nth-of-type(1) {
+    max-height: 196rpx;
+    overflow: hidden;
+    padding-top: 6rpx;
+    padding-bottom: 10rpx;
+}
+.storyTitle text.data-v-1b6dc0e3:nth-of-type(2) {
+    line-height: 20rpx;
+    max-height: 20rpx;
+    padding-bottom: 10rpx;
+}
+.storyTitle image.data-v-1b6dc0e3 {
+    width: 40rpx;
+    height: 12.6rpx;
+    display: block;
+    margin-top: -4rpx;
+}
+.shadow.data-v-1b6dc0e3 {
+  width: 100%;
+  height: 100vh;
+  background: rgba(3, 3, 3, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+.popup-lead-con.data-v-1b6dc0e3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  border-radius: 20rpx;
+  background: #fff;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+.popup-lead-title.data-v-1b6dc0e3 {
+  font-size: 48rpx;
+  line-height: 1;
+  color: #303030;
+  margin-top: 50rpx;
+}
+.popup-lead-text.data-v-1b6dc0e3 {
+  font-size: 32rpx;
+  line-height: 1;
+  color: #999;
+  margin-top: 50rpx;
+}
+.popup-lead-btn.data-v-1b6dc0e3 {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100rpx;
+  font-size: 36rpx;
+  color: #000;
+  border-top: 2rpx solid #eee;
+  margin-top: 60rpx;
+}
+.popup-lead-cancel.data-v-1b6dc0e3 {
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+.popup-lead-cancel.data-v-1b6dc0e3, .popup-lead-confirm.data-v-1b6dc0e3 {
+  width: 48%;
+  height: 100%;
+  display: inline-block;
+  line-height: 100rpx;
+  text-align: center;
+  cursor: pointer;
+  font-size: 34rpx;
+}
+.gradient.data-v-1b6dc0e3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+  background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0), #fff);
+}
+.texts.data-v-1b6dc0e3 {
+  color: #999999 !important;
+}
+.msg.data-v-1b6dc0e3 {
+  margin-top: 200rpx;
+  text-align: center;
+}
+.msg image.data-v-1b6dc0e3 {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+}
+.isHighlight.data-v-1b6dc0e3 {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  color: #fff;
+  z-index: 999;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.story_content_li.data-v-1b6dc0e3 {
+  position: relative;
+  margin: 0;
+  float: left;
+  margin-left: 42rpx;
+  width: 312rpx;
+  height: 432rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS0AAAGgCAMAAADIE8HaAAAAflBMVEX8+/ulpaX8/Py7u7v7+vr//v7z8/OVlZUGBgYAAAAAAAAAAAAAAAAAAAAAAAACAgIAAAAAAAD///8AAAD//v7p6emgoKDDw8PKysr7+/uvr6/w8PD19fX19fX8+/uysrL48PD9+/v39/f//v74+Pj6+vr09PT9/f38/Pz19fUTPY0yAAAAI3RSTlPPH9Qp2M8WNQEEBwkXCxEOHCEVCs0gMRol9S3b9tqqJRHWtDrFdv4AAARMSURBVHja7NJLSkIBAEBRS4qezqzIICLwU+1/g5UZ2ETfhaTJuUs43MnNy2LftQ5a/HRz0OTl+UrH+qV1fbfSsWjR2kerRKtEq0TrXxsOtR5ondAaBlq0QklroFW0Blojm+24aI3Umh1qTVY6rjWjNbr591y0utYFrRNaey5atP662/mc1uim0+Vyef/VgtbJnj573DW5p3Wq7fZ9vV5vNm+vl7Ro0RobrRKtEq0SrdI5tZa0aNEaGa3SObWmtGjRGhmtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrQ926R2nYSgAgGCTJs7HRimRhcT9D4lxLChftkoze4TRlmiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVovbXP39Z1PZ2+v2iN+thaluV6vc83WrRovasDi9ZL/WHd5wetUTvWc60LrVGb1Y5F65WeVjvWRGvUYTXfHrTG/VtNZ1qjNqsd6zKdaY21DqvpTOunXXpHARCGoiBaKJgmWAgWt1DE/e/RPyZNHrefWcJh4r6xzhJaUf9ZCa2wnKcXC624BwsttHa0nNByQssJLSMvX2vpqdFWaY2rpPlqoKKbRFJXah3a+4lBRqLdygAAAABJRU5ErkJggg==);
+  background-size: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin-bottom: 30rpx;
+  box-shadow: 0px 13rpx 17rpx 0px rgba(0, 0, 0, 0.1);
+}
+.story_content_li .bg_story.data-v-1b6dc0e3 {
+    display: block;
+    width: 284rpx;
+    height: 284rpx;
+    margin-right: 10rpx;
+    margin-top: 10rpx;
+    border-radius: 10rpx;
+}
+.story_content_li .commentary.data-v-1b6dc0e3 {
+    width: 100%;
+    margin: 0rpx 20rpx 0px 10rpx;
+    height: 25rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    overflow: hidden;
+}
+.story_content_li .commentary image.data-v-1b6dc0e3 {
+      width: 25rpx;
+      height: 25rpx;
+      display: block;
+      margin-left: 10rpx;
+}
+.story_content_li .description.data-v-1b6dc0e3 {
+    width: 100%;
+    margin: 0rpx 20rpx 0px 10rpx;
+    font-size: 28rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 500;
+    color: #333333;
+    height: 80rpx;
+    overflow: hidden;
+}
+.story_content.data-v-1b6dc0e3 {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0 0 10rpx 10rpx;
+  margin-bottom: 20px;
+}
+.title_info.data-v-1b6dc0e3:before {
+  position: absolute;
+  content: '';
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  top: 30rpx;
+  left: 0;
+  background: #333333;
+}
+.swiper_img.data-v-1b6dc0e3 {
+  width: 750rpx;
+  height: 750rpx;
+}
+.swiper_img image.data-v-1b6dc0e3 {
+  width: 750rpx !important;
+  height: 750rpx  !important;
+}
+uni-swiper.data-v-1b6dc0e3 {
+  height: 750rpx !important;
+}
+._h5.data-v-1b6dc0e3 {
+  font-size: 26rpx;
+  padding: 10rpx 0;
+}
+.knowledge.data-v-1b6dc0e3 {
+  font-size: 25rpx;
+  color: #888;
+  line-height: 42rpx;
+}
+.content.data-v-1b6dc0e3 {
+  width: 100%;
+}
+.content .banner.data-v-1b6dc0e3 {
+    border-radius: 10rpx;
+}
+.content .title.data-v-1b6dc0e3 {
+    margin: 20rpx;
+}
+.content .title ._h3.data-v-1b6dc0e3 {
+      font-size: 30rpx;
+      padding: 10rpx 0;
+}
+.content .title view.data-v-1b6dc0e3 {
+      font-size: 24rpx;
+      color: #888;
+}
+.content .tab.data-v-1b6dc0e3 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    height: 100rpx;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.content .tab view.data-v-1b6dc0e3 {
+      width: 50%;
+      text-align: center;
+      font-size: 32rpx;
+      color: #888;
+      font-weight: 600;
+}
+.active_tab.data-v-1b6dc0e3 {
+  color: #333333 !important;
+  position: relative;
+}
+.active_tab.data-v-1b6dc0e3::before {
+  content: '';
+  width: 36%;
+  height: 2px;
+  background: #333333;
+  bottom: -10rpx;
+  left: 32%;
+  position: absolute;
+}
+

@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/englishName",
+    "pages/alphabeticName",
+    "pages/lettersName",
+    "pages/questionnaire",
+    "pages/recommended",
+    "pages/NamesDetails",
+    "pages/boxTheme",
+    "pages/randomName",
+    "pages/searchName",
+    "pages/neutralEnglishName",
+    "pages/boysEnglishName",
+    "pages/girlsEnglishName",
+    "pages/storyDetails",
+    "pages/iosDownload",
+    "pages/newsDetails",
+    "pages/toyDetails"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

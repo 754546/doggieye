@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/addAddress",
+    "pages/receivingAddress",
+    "pages/storyDetails",
+    "pages/about",
+    "pages/toyDetails",
+    "pages/boxDetails",
+    "pages/articleDetails",
+    "pages/userAgreement",
+    "pages/orderForm",
+    "pages/orderDetails",
+    "pages/coupons"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

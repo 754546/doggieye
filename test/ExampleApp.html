@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	</head>
+	<body>
+	<script type="text/javascript">
+		var u = navigator.userAgent;
+	    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器 
+	    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	    
+		function setupWebViewJavascriptBridge(callback) {
+			if (window.WebViewJavascriptBridge) {
+				callback(WebViewJavascriptBridge)
+			} else {
+				document.addEventListener(
+					'WebViewJavascriptBridgeReady',
+					function() {
+						callback(WebViewJavascriptBridge)
+					},
+					false
+				);
+			}
+			//iOS使用
+			if (window.WebViewJavascriptBridge) {
+				return callback(WebViewJavascriptBridge);
+			}
+			if (window.WVJBCallbacks) {
+				return window.WVJBCallbacks.push(callback);
+			}
+			window.WVJBCallbacks = [callback];
+			var WVJBIframe = document.createElement('iframe');
+			WVJBIframe.style.display = 'none';
+			WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+			document.documentElement.appendChild(WVJBIframe);
+			setTimeout(function() {
+				document.documentElement.removeChild(WVJBIframe)
+			}, 0)
+		}
+		
+		setupWebViewJavascriptBridge(function(bridge) {
+			function test() {
+				bridge.callHandler('testObjcCallback',{'type':'toy','id':'123'}, function(response) {
+					alert(response)
+				})
+			}
+			function fun1(e){
+				alert(e)
+			}
+			if (isAndroid) {
+			   alert("都是安卓")
+			   window.android.callHandler('submitFromWeb',{'type':'toy','id':'123'},'fun1');
+			} else {
+				test()
+			}
+		
+		})
+		//安卓使用
+		
+		
+	</script>
+	<p id="p1">111111</p>
+	</body>
+</html>

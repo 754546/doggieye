@@ -1,0 +1,63 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/englishName"
+		},
+		{
+			"path": "pages/alphabeticName"
+		},
+		{
+			"path": "pages/lettersName"
+		},
+		{
+			"path": "pages/questionnaire"
+		},
+		{
+			"path": "pages/recommended",
+			 "enablePullDownRefresh": false  
+		},
+		{
+			"path": "pages/namesDetails",
+			 "enablePullDownRefresh": false  
+		},
+		{
+			"path": "pages/boxTheme"
+		},
+		// {
+		// 	"path": "pages/playMp3"
+		// },
+		{
+			"path": "pages/randomName",
+			 "enablePullDownRefresh": false  
+		},
+		{
+			"path":"pages/searchName",
+			 "enablePullDownRefresh": false  
+		},
+		{
+			"path":"pages/neutralEnglishName"
+		},
+		{
+			"path":"pages/boysEnglishName"
+		},
+		{
+			"path":"pages/girlsEnglishName"
+		},
+		{
+			"path": "pages/storyDetails"
+		},
+		{
+			"path": "pages/iosDownload"
+		},
+		{
+			"path": "pages/newsDetails"
+		},
+		{
+			"path": "pages/toyDetails"
+		}
+    ],
+	"globalStyle": {
+		"navigationStyle": "custom"
+	}
+}

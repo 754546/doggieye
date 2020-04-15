@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+.uni-radio .uni-radio-wrapper .uni-radio-input{
+	border-color: #007AFF !important;
+}
+

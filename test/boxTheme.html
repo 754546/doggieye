@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1.0,user-scalable=no">
+		<title>小狗眼看世界</title>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+			display:block;
+		}
+		#hint{
+			width: 100%;
+			height: 500px;
+			line-height: 500px;
+			text-align: center;
+			color: #999999;
+			font-size: 30px;
+		}
+	</style>
+	<body>
+		<div id='list'>
+			
+		</div>
+	</body>
+	<script src="https://www.doggieye.com/js/jquery.js"></script>
+	<script src="http://test.doggieye.com/app/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var url = location.search; //获取url中"?"符后的字串
+			var theRequest = new Object();  
+			if (url.indexOf("?") != -1) {  
+					  var str = url.substr(1);  
+					  strs = str.split("&");  
+					  for(var i = 0; i < strs.length; i ++) {  
+						 theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+					  }  
+			}  
+			id=theRequest.id;
+			if(id){
+				var sign='';
+				sign='KAIXUN'+hex_md5(id).toUpperCase()+'DOGGIEYE';
+				sign=hex_md5(sign).toUpperCase();
+				$.ajax({
+					url:"http://app.test.doggieye.com:8081/doggieye-api/api/box/info/info",
+					// url:"https://www.doggieye.com:8081/doggieye-api/api/box/info/info",
+					type:'POST',
+					data:id,
+					dataType:"json",
+					headers:{"sign":sign},
+					
+					contentType: 'application/json;charset=UTF-8',	
+					success:function(result){
+						if(result.code==200&&result.data){
+							document.title =result.data.boxTopicName;
+							var imgList=result.data.imageUrlList.split(',');
+							var html="";
+							for (let i=0;i<imgList.length;i++) {
+								html+="<img src="+imgList[i]+">";
+							}
+							$('#list').html(html)
+						}else{
+							$('#list').html("<div id='hint'>抱歉，没有查找到盒子主题</div>")
+						}
+					}
+				});
+			}else{
+				$('#list').html("<div id='hint'>抱歉，没有查找到盒子主题</div>")
+			}
+			
+		})
+	</script>
+</html>

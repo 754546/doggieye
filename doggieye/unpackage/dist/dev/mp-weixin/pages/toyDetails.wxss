@@ -1,0 +1,361 @@
+
+ .rich-img{
+	max-width:100%;
+}
+
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.buyToy.data-v-d5a4fe92 {
+  width: 678rpx;
+  height: 88rpx;
+  background: #53a0e8;
+  box-shadow: -10rpx 3rpx 15rpx 0px rgba(0, 0, 0, 0.2);
+  border-radius: 44rpx;
+  position: fixed;
+  bottom: 54rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #fefefe;
+  text-align: center;
+  line-height: 88rpx;
+  z-index: 9;
+}
+.content.data-v-d5a4fe92 {
+  margin: 0;
+}
+.imgListD.data-v-d5a4fe92 {
+  width: 100%;
+}
+.imgListD image.data-v-d5a4fe92 {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-bottom: -2rpx;
+}
+.storyTitle.data-v-d5a4fe92 {
+  z-index: 7;
+  width: 40rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 19rpx;
+  min-height: 40rpx;
+  max-height: 286rpx;
+  overflow: hidden;
+}
+.storyTitle text.data-v-d5a4fe92 {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24rpx;
+    word-wrap: break-word;
+    font-family: Source Han Sans CN;
+    color: #1d201f;
+    line-height: 35rpx;
+    background-color: #ffea00;
+}
+.storyTitle text.data-v-d5a4fe92:nth-of-type(1) {
+    max-height: 196rpx;
+    overflow: hidden;
+    padding-top: 6rpx;
+    padding-bottom: 10rpx;
+}
+.storyTitle text.data-v-d5a4fe92:nth-of-type(2) {
+    line-height: 20rpx;
+    max-height: 20rpx;
+    padding-bottom: 10rpx;
+}
+.storyTitle image.data-v-d5a4fe92 {
+    width: 40rpx;
+    height: 12.6rpx;
+    display: block;
+    margin-top: -4rpx;
+}
+.story_content.data-v-d5a4fe92 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding-bottom: 150rpx;
+  margin-top: 80rpx;
+}
+.story_content_li.data-v-d5a4fe92 {
+  position: relative;
+  width: 312rpx;
+  height: 432rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS0AAAGgCAMAAADIE8HaAAAAflBMVEX8+/ulpaX8/Py7u7v7+vr//v7z8/OVlZUGBgYAAAAAAAAAAAAAAAAAAAAAAAACAgIAAAAAAAD///8AAAD//v7p6emgoKDDw8PKysr7+/uvr6/w8PD19fX19fX8+/uysrL48PD9+/v39/f//v74+Pj6+vr09PT9/f38/Pz19fUTPY0yAAAAI3RSTlPPH9Qp2M8WNQEEBwkXCxEOHCEVCs0gMRol9S3b9tqqJRHWtDrFdv4AAARMSURBVHja7NJLSkIBAEBRS4qezqzIICLwU+1/g5UZ2ETfhaTJuUs43MnNy2LftQ5a/HRz0OTl+UrH+qV1fbfSsWjR2kerRKtEq0TrXxsOtR5ondAaBlq0QklroFW0Blojm+24aI3Umh1qTVY6rjWjNbr591y0utYFrRNaey5atP662/mc1uim0+Vyef/VgtbJnj573DW5p3Wq7fZ9vV5vNm+vl7Ro0RobrRKtEq0SrdI5tZa0aNEaGa3SObWmtGjRGhmtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrRKtEq0SrQ926R2nYSgAgGCTJs7HRimRhcT9D4lxLChftkoze4TRlmiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVolWiVaJVovbXP39Z1PZ2+v2iN+thaluV6vc83WrRovasDi9ZL/WHd5wetUTvWc60LrVGb1Y5F65WeVjvWRGvUYTXfHrTG/VtNZ1qjNqsd6zKdaY21DqvpTOunXXpHARCGoiBaKJgmWAgWt1DE/e/RPyZNHrefWcJh4r6xzhJaUf9ZCa2wnKcXC624BwsttHa0nNByQssJLSMvX2vpqdFWaY2rpPlqoKKbRFJXah3a+4lBRqLdygAAAABJRU5ErkJggg==);
+  background-size: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin: 0 0 30rpx  42rpx !important;
+  box-shadow: 0px 13rpx 17rpx 0px rgba(0, 0, 0, 0.1);
+}
+.story_content_li .bg_story.data-v-d5a4fe92 {
+    display: block;
+    width: 284rpx;
+    height: 284rpx;
+    margin-right: 10rpx;
+    margin-top: 10rpx;
+    border-radius: 10rpx;
+}
+.story_content_li .commentary.data-v-d5a4fe92 {
+    width: 100%;
+    margin: 0rpx 20rpx 0px 10rpx;
+    height: 25rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    overflow: hidden;
+}
+.story_content_li .commentary image.data-v-d5a4fe92 {
+      width: 25rpx;
+      height: 25rpx;
+      display: block;
+      margin-left: 10rpx;
+}
+.story_content_li .description.data-v-d5a4fe92 {
+    width: 100%;
+    margin: 0rpx 20rpx 0px 10rpx;
+    font-size: 28rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 500;
+    color: #333333;
+    height: 80rpx;
+    overflow: hidden;
+}
+.info.data-v-d5a4fe92 {
+  width: 100%;
+  background: white;
+  position: relative;
+  margin-top: 120rpx;
+}
+.info1.data-v-d5a4fe92 {
+  width: 100%;
+  background: white;
+}
+page.data-v-d5a4fe92 {
+  background: #E4F2FA;
+}
+.isHighlight.data-v-d5a4fe92 {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  color: #fff;
+  z-index: 999;
+  width: 56rpx;
+  height: 30rpx;
+  background: black;
+  opacity: 0.5;
+  font-size: 20rpx;
+  font-weight: 600;
+  border-radius: 4rpx;
+  text-align: center;
+}
+.title_info.data-v-d5a4fe92:before {
+  position: absolute;
+  content: '';
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  top: 30rpx;
+  left: 0;
+  background: #333333;
+}
+uni-swiper.data-v-d5a4fe92 {
+  width: 650px;
+  height: 330px;
+}
+.knowledge.data-v-d5a4fe92 {
+  font-size: 24rpx;
+  color: #888;
+  line-height: 42rpx;
+}
+.content.data-v-d5a4fe92 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.content .banner.data-v-d5a4fe92 {
+    border-radius: 10rpx;
+    width: 100%;
+}
+.content .swiper.data-v-d5a4fe92 {
+    width: 100%;
+    height: 750rpx;
+}
+.content .swiper .swiper_img.data-v-d5a4fe92 {
+      width: 750rpx;
+      height: 750rpx;
+}
+.content .swiper .swiper_img image.data-v-d5a4fe92 {
+        width: 750rpx;
+        height: 750rpx;
+}
+.content .title.data-v-d5a4fe92 {
+    margin: 20rpx 20rpx;
+}
+.content .title .pic.data-v-d5a4fe92 {
+      width: 100%;
+      height: 40rpx;
+      padding: 10rpx 0 10rpx;
+      font-size: 42rpx;
+      font-weight: bold;
+      color: #333333;
+}
+.content .title .h3 view.data-v-d5a4fe92 {
+      line-height: 40rpx;
+}
+.content .title .h3 view.data-v-d5a4fe92:nth-of-type(1) {
+      font-size: 28rpx;
+      font-weight: 600;
+      float: left;
+}
+.content .title .h3 view.data-v-d5a4fe92:nth-of-type(2) {
+      font-size: 24rpx;
+      float: right;
+      color: #999999;
+      margin-left: 10rpx;
+}
+.content .title .h3 view:nth-of-type(2) text.data-v-d5a4fe92:last-child {
+        margin-left: 6rpx;
+}
+.content .title .h3 view.data-v-d5a4fe92:nth-of-type(3) {
+      font-size: 24rpx;
+      float: right;
+      color: #999999;
+}
+.content .title .h3 view:nth-of-type(3) text.data-v-d5a4fe92:last-child {
+        margin-left: 6rpx;
+}
+.content .title .promotionalName.data-v-d5a4fe92 {
+      font-size: 26rpx;
+      color: #888;
+      margin-bottom: 20rpx;
+      clear: both;
+}
+.content .tab.data-v-d5a4fe92 {
+    position: absolute;
+    z-index: 6;
+    top: -48rpx;
+    left: 40rpx;
+    width: 678rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    background: white;
+    box-shadow: 0px 8rpx 20rpx 0px rgba(185, 195, 201, 0.2);
+    border-radius: 10rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.content .tab view.data-v-d5a4fe92 {
+      width: 50%;
+      text-align: center;
+      font-size: 28rpx;
+      color: #999;
+      font-weight: 600;
+}
+.active_tab.data-v-d5a4fe92 {
+  color: #333333 !important;
+  position: relative;
+}
+.active_tab.data-v-d5a4fe92::before {
+  content: '';
+  width: 36%;
+  height: 2px;
+  background: #333333;
+  bottom: 20rpx;
+  left: 32%;
+  position: absolute;
+}
+.tab_content .title_info.data-v-d5a4fe92 {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  font-weight: 600;
+  position: relative;
+  height: 30rpx;
+  margin-top: 20rpx;
+  line-height: 30rpx;
+}
+.tab_content .title_info ._span.data-v-d5a4fe92 {
+    margin-left: 20rpx;
+}
+.tab_content .tab_info.data-v-d5a4fe92 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.tab_content .tab_info .tab_info_zi.data-v-d5a4fe92 {
+    width: 50%;
+}
+.tab_content .tab_info .tab_info_zi view.data-v-d5a4fe92 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      overflow: hidden;
+      line-height: 40rpx;
+}
+.tab_content .tab_info .tab_info_zi view ._span.data-v-d5a4fe92:first-child {
+        display: inline-block;
+        width: 130rpx;
+        color: #888;
+}
+.tab_content .tab_info .tab_info_zi view ._span.data-v-d5a4fe92 {
+        font-size: 25rpx;
+}
+

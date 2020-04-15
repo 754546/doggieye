@@ -1,0 +1,212 @@
+
+ .text_content ._img{
+	max-width: 100%;
+}
+ .altitude ._img{
+	max-width: 100%;
+}
+
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page.data-v-eb470ac0 {
+  box-sizing: border-box !important;
+  border: 1rpx solid #fff;
+}
+.shadow.data-v-eb470ac0 {
+  width: 100%;
+  height: 100vh;
+  background: rgba(3, 3, 3, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.popup-lead-con.data-v-eb470ac0 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  border-radius: 20rpx;
+  background: #fff;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+.popup-lead-title.data-v-eb470ac0 {
+  font-size: 48rpx;
+  line-height: 1;
+  color: #303030;
+  margin-top: 50rpx;
+}
+.popup-lead-text.data-v-eb470ac0 {
+  font-size: 32rpx;
+  line-height: 1;
+  color: #999;
+  margin-top: 50rpx;
+}
+.popup-lead-btn.data-v-eb470ac0 {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100rpx;
+  font-size: 36rpx;
+  color: #000;
+  border-top: 2rpx solid #eee;
+  margin-top: 60rpx;
+}
+.popup-lead-cancel.data-v-eb470ac0 {
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+.popup-lead-cancel.data-v-eb470ac0, .popup-lead-confirm.data-v-eb470ac0 {
+  width: 48%;
+  height: 100%;
+  display: inline-block;
+  line-height: 100rpx;
+  text-align: center;
+  cursor: pointer;
+  font-size: 34rpx;
+}
+.gradient.data-v-eb470ac0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+  background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0), #fff);
+}
+.texts.data-v-eb470ac0 {
+  color: #999999 !important;
+}
+.msg.data-v-eb470ac0 {
+  margin-top: 200rpx;
+  text-align: center;
+}
+.msg image.data-v-eb470ac0 {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+}
+.hint.data-v-eb470ac0 {
+  color: #888;
+  margin-top: 200rpx;
+  text-align: center;
+}
+.jump.data-v-eb470ac0 {
+  width: 92%;
+  background: #1d201f;
+  color: #FFFFFF;
+  margin: 20rpx auto !important;
+}
+.text_content.data-v-eb470ac0 {
+  margin: 20rpx auto;
+  width: 92%;
+}
+.text_parent.data-v-eb470ac0 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.altitude.data-v-eb470ac0 {
+  margin: 0 auto 20rpx;
+  width: 92%;
+  height: 100vh;
+  overflow: hidden;
+}
+.isHighlight.data-v-eb470ac0 {
+  position: absolute;
+  right: 20rpx;
+  bottom: 40rpx;
+  color: #fff;
+  z-index: 999;
+  padding: 5rpx;
+  background: rgba(0, 0, 0, 0.3);
+}
+._h4.data-v-eb470ac0 {
+  margin: 30rpx auto;
+  width: 92%;
+  font-size: 33rpx;
+}
+.list.data-v-eb470ac0 {
+  position: relative;
+  width: 92%;
+  height: 275rpx;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1px solid #edeff3;
+}
+.list image.data-v-eb470ac0 {
+    width: 250rpx;
+    height: 213rpx;
+    border-radius: 8rpx 8rpx 10rpx 10rpx;
+}
+.list .list_content.data-v-eb470ac0 {
+    height: 213rpx;
+    width: 275rpx;
+}
+.list .list_content ._p.data-v-eb470ac0:first-child {
+      font-size: 30rpx;
+      height: 80rpx;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 40rpx;
+}
+.list .list_content .Operation.data-v-eb470ac0 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      margin-top: 50rpx;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+              justify-content: flex-start;
+}
+.list .list_content .Operation view.data-v-eb470ac0 {
+        margin-right: 82rpx;
+        text-align: center;
+        vertical-align: middle;
+        margin-top: 22rpx;
+}
+.list .list_content .Operation view image.data-v-eb470ac0 {
+          width: 33rpx;
+          height: 33rpx;
+}
+.list .list_content .Operation view ._span.data-v-eb470ac0 {
+          display: block;
+          width: 100%;
+          font-size: 21rpx;
+}
+
