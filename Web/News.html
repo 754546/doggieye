@@ -1,0 +1,138 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="Keywords" content="儿童新闻,玩具新闻,盒子新闻,小狗眼看世界APP新闻,湖南恺讯教育科技有限公司新闻"/>
+        <meta name="Description" content="湖南恺讯教育科技有限公司与小狗眼看世界APP的新闻" />
+		<title>新闻动态</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="icon" href="img/icon.png" mce_href="inmg/icon.png" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/News.css"/>
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?e49a8315414576b3eb09e4f789728849";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+	</head>
+	<body>
+		<div class="container_nav">
+			<div class="nav">
+				<img src="img/logo.png" alt="logo" class="logo">
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="AboutUs.html">关于我们</a></li>
+					<li class="active_nav"><a href="News.html"></a></li>
+					<li><a href="DownloadApp.html">下载APP</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="body">
+			<img src="img/bg_404.png"  class="bg404">
+			<div class="content">
+				<div class="title">
+					<span>WINTER 2020</span>	
+				</div>
+				<div class="title1">
+					<img src="img/new_zi.png" >
+				</div>
+				<div class="title2">
+					<span>资讯生活 </span> <span>发现世界</span>
+				</div>
+				<ul class="new_banner">
+					<li>
+						<img src="img/word1.png" >
+					</li>
+					<li>
+						<img src="img/word.png" >
+					</li>
+					<li>
+						<img src="img/origin.png" >
+					</li>
+					<li>
+						<img src="./img/word2.png" >
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="body1">
+			<div class="body2">
+				<div class="content">
+					<ul class="news_list">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="content">
+				<ul class="page_list">
+					<li>1</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="footer_content">
+					<div class="footer_left">
+						<img src="img/logo.png"  alt="logo">
+						<p>湖南恺讯教育科技有限公司</p>
+						<p><span>位置：</span>湖南省长沙市高新区芯城科技园2栋1908室</p>
+						<p><span>邮箱：</span>doggieye@126.com</p>
+						<p><span>客服电话：</span>0731-86452620</p>
+						<p><span>公众号：</span>小狗眼看世界</p>
+						<p><a href="http://pic.doggieye.com/doggieye/UserAgreement.html">用户协议</a><a href="http://pic.doggieye.com/doggieye/PrivacyPolicy.html">隐私政策</a></p>
+					</div>
+					<div class="footer_right">
+						<ul class="download_list1">
+							<li>
+								<img src="img/iosqrcode.png"  alt="二维码">
+								<p>IOS版本APP</p>
+							</li>
+							<li>
+								<img src="img/Androidqrcode.png"  alt="二维码">
+								<p>安卓版本APP</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="version">
+					<span>Copyright ©2019. All Rights Reserved 湖南恺讯教育科技有限公司</span><a href="http://www.beian.miit.gov.cn" target="_blank">湘ICP备19021095号</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		var html=""
+		var data=[
+			{yueri:'01.15',nian:'2020',img:'img/test12.png',title:'小狗眼看世界APPv1.0.0正式上线',describe:'小小狗眼看世界app全新上线，变身知识魔法师，用知识点亮玩具，用乐趣陪伴童真！',id:'1003'},
+			{yueri:'01.10',nian:'2020',img:'img/list_new1.png',title:'我与世界',describe:'我与世界，世界与我。愿你出走半生，归来仍是少年。小狗眼看世界，盒你一起，玩遍世界。',id:'1002'},
+			{yueri:'01.10',nian:'2020',img:'img/list_new.png',title:'小狗眼看世界的由来',describe:'科学家发现，狗的眼神与我们人类婴儿的眼神颇为相似，这样的“宠物眼”使家养狗狗与人类情感联结更为紧密，并且狗狗自带的这种“能够表达情绪的眼神”，也给我们创造出了“像人一样沟通的幻觉”。',id:'1001'},	
+		]
+		console.log(window.screen.width)
+		if(window.screen.width<1200){
+			window.location.href="Download.html"
+		}
+		function csh(){
+			for(let i=0;i<data.length;i++){
+				html+="<li  class='list'><div class='list_left'><p>"+data[i].yueri+"</p><p>"+data[i].nian+"</p></div><div class='list_right'><img src="+data[i].img+" ><div><p>"+data[i].title +"</p><div><span>"+data[i].describe+"</span><span>HOT</span></div></div></div></li>";
+			}
+			$('.news_list').html(html);
+			jump()
+		}
+		function jump(){
+			$(".list .list_right").click(function(){
+				var index=$(this).parent('.list').index()
+				location.href="NewsDetails.html?id="+data[index].id;
+			})
+		}
+		csh()
+	})
+</script>

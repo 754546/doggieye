@@ -1,0 +1,71 @@
+.content{
+	width: 100%;
+	min-width: 1200px;
+	height: 710px;
+	margin-top: 80px;
+	overflow: hidden;
+	position: relative;
+}
+.bg_404{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.active_nav{
+	background:url(../img/nav_download.png);
+}
+.app_logo{
+	width: 152px;
+	height: 152px;
+	display: block;
+	margin: 145px auto 20px;
+}
+.title{
+	width:100%;
+	font-size:24px;
+	font-family:Microsoft YaHei;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+	text-align: center;
+}
+.download_list{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 70px;
+}
+.container1{
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.download_list li{
+	margin:10px 60px;
+}
+.download_list li p{
+	text-align: center;
+	margin-top: 12px;
+	width:100px;
+	height:30px;
+	background:rgba(255,255,255,1);
+	box-shadow:1px 2px 15px 0px rgba(145,165,179,0.2);
+	border-radius:15px;
+	line-height: 30px;
+	font-size:14px;
+	font-family:Microsoft YaHei;
+	font-weight:400;
+	color:rgba(0,0,0,1);
+}
+.download_list li img{
+	width: 100px;
+	height: 100px;
+	box-shadow:1px 2px 15px 0px rgba(145,165,179,0.2);
+}
+.download_list li:hover{
+	transform: scale(1.2,1.2);
+}
