@@ -22,6 +22,7 @@ export const post=(url,data)=>{
 			'sign':sign,
 			'token':''
 		}
+		//, success: () => {}
 	});
 }
 export const toast=(title,time,icon)=>{

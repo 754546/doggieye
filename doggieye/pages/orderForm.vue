@@ -6,9 +6,9 @@
 		<view class="bg">
 			<view class="tab">
 				<view :class="{active:active==0}" @click="tabChange(0)">全部</view>
-				<view :class="{active:active==1}" @click="tabChange(1)"><view><text>待付款</text><text v-if="numberList.unpaidNumber<100">{{numberList.unpaidNumber}}</text><text v-else>99</text></view></view>
-				<view :class="{active:active==2}" @click="tabChange(2)"><view><text>待发货</text><text v-if="numberList.unconsignedNumber<100">{{numberList.unconsignedNumber}}</text><text  v-else>99</text></view></view>
-				<view :class="{active:active==3}" @click="tabChange(3)"><view><text>待收货</text><text v-if="numberList.shippedNumber<100">{{numberList.shippedNumber}}</text><text  v-else>99</text></view></view>
+				<view :class="{active:active==1}" @click="tabChange(1)"><view><text>待付款</text><text v-if="numberList.unpaidNumber<100&&numberList.unpaidNumber>0"  class="origin">{{numberList.unpaidNumber}}</text><text v-if="numberList.shippedNumber>99"  class="origin">99</text></view></view>
+				<view :class="{active:active==2}" @click="tabChange(2)"><view><text>待发货</text><text v-if="numberList.unconsignedNumber<100&&numberList.unconsignedNumber>0"  class="origin">{{numberList.unconsignedNumber}}</text><text  v-if="numberList.shippedNumber>99"  class="origin">99</text></view></view>
+				<view :class="{active:active==3}" @click="tabChange(3)"><view><text>待收货</text><text v-if="numberList.shippedNumber<100&&numberList.shippedNumber>0" class="origin">{{numberList.shippedNumber}}</text><text  v-if="numberList.shippedNumber>99"  class="origin">99</text></view></view>
 			</view>
 			<view class="order" v-if="data.length>0">
 				<view >
@@ -128,7 +128,7 @@ body{
 		>view{
 			display: inline-block;
 			position: relative;
-			text:last-child{
+			.origin{
 				position: absolute;
 				top: -8upx;
 				right:-24upx;

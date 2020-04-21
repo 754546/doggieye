@@ -4,37 +4,52 @@
 			<image src="../static/goback.png" @click="goback"></image>
 			<b>随机取名</b>
 		</view>
-		<radio-group  class="radio-groups">
+		<radio-group  class="radio-groups" @change="sexFun">
 			<view class="sex_content">
-					<view class="sex">
-						<image src="http://pic.doggieye.com/20200320/08c9c4a090ca4ed79f36cad3d2807525.png"  class="head_img"></image>
+					<view :class="{'sex':true,'big':sex==1}" >
+						<image src="http://pic.doggieye.com/20200417/efd351ab4163466595bf12caa330ec8c.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view >
-								<radio value="0"  color="#53A0E8" class="danxuan"/>
+								<radio value="1"  color="#53A0E8" class="danxuan" checked/>
 							</view>
 							<view>男生</view>
 						</label>
 					</view>	 
-					<view class="sex">
-						<image src="http://pic.doggieye.com/20200320/08c9c4a090ca4ed79f36cad3d2807525.png"  class="head_img"></image>
+					<view :class="{'sex':true,'big':sex==2}" >
+						<image src="http://pic.doggieye.com/20200417/994f9182d9ff405e9c0f0cf95b39bb0c.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view>
-								<radio value="1" color="#FF97D9"  class="danxuan"/>
+								<radio value="2" color="#FF97D9"  class="danxuan"/>
 							</view>
 							<view>女生</view>
 						</label>
 					</view>	 
-					<view class="sex">
-						<image src="http://pic.doggieye.com/20200320/08c9c4a090ca4ed79f36cad3d2807525.png"  class="head_img"></image>
+					<view :class="{'sex':true,'big':sex==3}" >
+						<image src="http://pic.doggieye.com/20200417/905260684ebe4217b6d33cffb52d9781.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view>
-								<radio value="2" color="#FFE628"  class="danxuan"/>
+								<radio value="3" color="#FFE628"  class="danxuan"/>
 							</view>
 							<view>中性</view>
 						</label>
 					</view>	 
 				</view>
 			</radio-group>	
+			<view class="animation">
+				<view class="footer" @click="play">
+					<image src="http://pic.doggieye.com/20200417/ec4027f39d0c4cc889ec9040b65f9055.png" v-show="footer==1" mode="widthFix"></image>
+					<image src="http://pic.doggieye.com/20200417/33460830323044e8babbdf2e9a1327e0.png" mode="widthFix" v-show="footer==2"></image>
+					<view class="clouds">
+						<image src="http://pic.doggieye.com/20200417/6de09d6de9304cb1aa21606f9e930338.png" mode="widthFix" v-show="cloud==1&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/abe282543824493897e80f4e3be36cec.png" mode="widthFix" v-show="cloud==2&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/5694acc07062437dbca2dd31f4347478.png" mode="widthFix" v-show="cloud==3&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/da771253e614451c8532f73be664bd49.png" mode="widthFix" v-show="cloud==4&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/f16f811ef22f4967bec57f4366507098.png" mode="widthFix" v-show="cloud==5&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/ffb0dca0f08a435399fadc0a34e3a2bb.png" mode="widthFix" v-show="cloud==6&&footer==2"></image>
+						<image src="http://pic.doggieye.com/20200417/2deccd6efdc14a7fad2b638d5ec26f5b.png" mode="widthFix" v-show="cloud==7&&footer==2"></image>
+					</view>
+				</view>
+			</view>
 	</view>
 </template>
 
@@ -43,12 +58,51 @@
 	export default {
 		data() {
 			return {
-				}
+				footer:1,
+				cloud:0,
+				sex:1,
+				dingshi:''
+			}
+		},
+		onLoad() {
 		},
 		methods: {	
+			sexFun:function(e){
+				this.sex=e.target.value;
+			},
 			goback:function(){
 				window.history.go(-1);
-			}
+			},
+			time:function(){
+				if(this.cloud<7)
+				{
+					this.cloud++
+				}else{
+					this.cloud=0;
+					this.footer=1;
+					var that=this;
+					clearInterval(this.dingshi);
+					setTimeout(function(){
+						uni.navigateTo({
+							url:"recommended?sex="+that.sex
+						})
+					},100)
+				}
+			},
+			play:function(){
+				var that=this;
+				if(this.footer==1){
+					var that=this;
+					that.footer=2
+					that.dingshi=setInterval(function(){
+						that.time()
+					},400)
+					
+				}else{
+					this.footer=1;
+					clearInterval(this.dingshi); 
+				}
+			},
 		}
 	}
 </script>
@@ -58,7 +112,33 @@
 	}
 </style>
 <style scoped lang="scss">
-
+.big{
+	transform: scale(1.1,1.1);
+}
+.animation{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	.footer{
+		position: relative;
+		>image{
+			display: block;
+			width: 100%;
+		}
+		.clouds{
+			position: absolute;
+			top:0;
+			left: 50%;
+			width: 182upx;
+			transform: translate(-20%,-30%);
+			image{
+				width: 182upx;
+				height: 240upx;
+			}
+		}
+	}
+}
 .radio-groups{
 	overflow:hidden;
 	overflow-x: scroll;
@@ -66,21 +146,6 @@
 		width: 1000upx;
 		height: 400upx;
 		margin: 20upx auto;
-		// .sex:nth-of-type(1){
-		// 	uni-radio .uni-radio-input{
-		// 		border: 1upx solid #53A0E8 !important;
-		// 	}
-		// }
-		// .sex:nth-of-type(2){
-		// 	uni-radio .uni-radio-input{
-		// 		border: 1upx solid #FF97D9 !important;
-		// 	}
-		// }
-		// .sex:nth-of-type(3){
-		// 	uni-radio .uni-radio-input{
-		// 		border: 1upx solid #FFE628 !important;
-		// 	}
-		// }
 		.sex{
 			width:288upx;
 			height:360upx;
@@ -90,10 +155,9 @@
 			display: inline-block;
 			margin-left: 20upx;
 			.head_img{
-				width: 192upx;
-				height: 192upx;
+				width: 230upx;
+				height: 200upx;
 				display: block;
-				border-radius: 50%;
 				margin: 20upx auto;
 			}
 			.radios{
@@ -106,12 +170,12 @@
 }
 
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;

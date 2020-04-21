@@ -32,7 +32,7 @@
 						<text v-if="item.knowledge.length>6">...</text>
 						<image src="../static/pic-fenleitag.png"></image>
 					</view>
-					<image :src="item.storyCoverIndex" class="bg_story"></image>
+					<image :src="item.storyCoverIndex" class="bg_story" mode="aspectFill"></image>
 					<view class="commentary">
 						<image src="../static/x.png" v-for="(img,key) in item.stars" :key="key"></image>
 						<image src="../static/bx.png"  v-if='item.Bstars'></image>

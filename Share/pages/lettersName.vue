@@ -46,7 +46,7 @@
 					{img:'../static/u.png',val:'u'},
 					{img:'../static/v.png',val:'v'},
 					{img:'../static/w.png',val:'w'},
-					{img:'../static/xx.png',val:'xx'},
+					{img:'../static/xx.png',val:'x'},
 					{img:'../static/y.png',val:'y'},
 					{img:'../static/z.png',val:'z'}
 				]
@@ -101,12 +101,12 @@
 	min-height: 100vh;
 }
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;

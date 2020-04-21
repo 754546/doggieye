@@ -200,7 +200,23 @@ var _index = __webpack_require__(/*! @/common/index */ 22); //
 //
 //
 //
-var _default = { data: function data() {return { statusBarHeight: getApp().globalData.statusBarHeight, titile: '', data: [], choose: 0 };}, onLoad: function onLoad(e) {if (e.choose == 1) {this.choose = e.choose;}this.getinfo();}, onShow: function onShow() {this.getinfo();}, methods: { check: function check(item) {if (this.choose == 1) {uni.redirectTo({ url: "boxDetails?addressId=" + item.id + "&type=1&isDefault=1&consignee=" + item.consignee + "&phone=" + item.phone + "&province=" + item.province + "&city=" + item.city + "&county=" + item.county + "&detailedAddress=" + item.detailedAddress });}}, getinfo: function getinfo() {var _this = this;(0, _index.post)("/api/user/shippingaddress/list", { "vo": { "isDefault": 0, "userId": uni.getStorageSync('userId') } }).then(function (res) {_this.data = res[1].data.data.list;for (var i = 0; i < _this.data.length; i++) {_this.data[i].phone1 = _this.data[i].phone.substr(0, 3) + '****' + _this.data[i].phone.substr(7);}}).catch(function (res) {
+var _default = { data: function data() {return { statusBarHeight: getApp().globalData.statusBarHeight, titile: '', data: [], choose: 0, orderId: '' };}, onLoad: function onLoad(e) {if (e.choose == 1) {this.choose = e.choose;} else if (e.choose == 2) {this.choose = e.choose;this.orderId = e.orderId;}this.getinfo();}, onShow: function onShow() {this.getinfo();}, methods: { check: function check(item) {if (this.choose == 1) {uni.redirectTo({ url: "boxDetails?id=" + item.id + "&type=1&isDefault=1&consignee=" + item.consignee + "&phone=" + item.phone + "&province=" + item.province + "&city=" + item.city + "&county=" + item.county + "&detailedAddress=" + item.detailedAddress });} else if (this.choose == 2) {(0, _index.post)("/api/buy/order/info/updateAddress", { "orderId": this.orderId, "shippingAddressId": item.id }).then(function (res) {if (res[1].data.code == 200) {uni.navigateBack({ delta: 1 });
+          } else {
+            (0, _index.toast)(res[1].data.msg);
+          }
+        }).catch(function (res) {
+          (0, _index.toast)(res[1].data.msg);
+        });
+      }
+
+    },
+    getinfo: function getinfo() {var _this = this;
+      (0, _index.post)("/api/user/shippingaddress/list", { "vo": { "isDefault": 0, "userId": uni.getStorageSync('userId') } }).then(function (res) {
+        _this.data = res[1].data.data.list;
+        for (var i = 0; i < _this.data.length; i++) {
+          _this.data[i].phone1 = _this.data[i].phone.substr(0, 3) + '****' + _this.data[i].phone.substr(7);
+        }
+      }).catch(function (res) {
         (0, _index.toast)(res[1].data.msg);
       });
     },

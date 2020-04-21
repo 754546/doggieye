@@ -26,7 +26,7 @@
 								<image  :src="item.toyIcon" @click="particulars(item.id)" ></image>
 								<view class="shadow" >
 									<text>{{item.toyName}}</text>
-									<text>购买</text>
+									<!-- <text>购买</text> -->
 								</view>
 							</view>
 						</view>
@@ -198,19 +198,19 @@
 			font-size: 30upx;
 			float: left;
 		}
-		text:last-child{
-			float: right;
-			font-size:28upx;
-			width: 100upx;
-			height: 48upx;
-			color: #FFFFFF;
-			border-radius: 24upx;
-			background: #333333;
-			line-height: 48upx;
-			text-align: center;
-			display: block;
-			margin: 6upx 12upx 0 0;
-		}
+		// text:last-child{
+		// 	float: right;
+		// 	font-size:28upx;
+		// 	width: 100upx;
+		// 	height: 48upx;
+		// 	color: #FFFFFF;
+		// 	border-radius: 24upx;
+		// 	background: #333333;
+		// 	line-height: 48upx;
+		// 	text-align: center;
+		// 	display: block;
+		// 	margin: 6upx 12upx 0 0;
+		// }
 		font-weight: 600;
 		line-height: 60upx;
 		color: #FFFFFF;border-radius:0 0 10upx 10upx;

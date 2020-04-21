@@ -1,11 +1,12 @@
 <template>
 	<view class="content">
 		<view class="head" v-show="!show_popups">
+			<image src="../static/goback.png" @click="goback"></image>
 			<b>英文名</b>
 		</view>
 		<view class="cancel" @click="cancel" v-show="show_popups">取消</view>
 		<view :class="{head_img1:!show_popups,'head_img':true}" >
-			<image src="http://pic.doggieye.com/20200316/4cf0570c67eb4b32878bdab1e75a4ef7.png" class="publicity_img" v-show="!show_popups" ></image>
+			<image src="http://pic.doggieye.com/20200417/390192114073413199734e135b24d9b2.png" class="publicity_img" mode="widthFix" v-show="!show_popups" ></image>
 			<view class="search_input" @click="search" :style="show_popups?'height:120upx;width:100%;':'width:650upx;height:88upx;background:rgba(139,199,255,1);box-shadow:3upx 5upx 10upx 0px rgba(82,159,231,0.2);'">
 				<view :class="{top_search:show_popups,'flex_input':true}">
 					<view  :class="{bg_input:show_popups,flex_input:true}">
@@ -20,35 +21,45 @@
 		</view>
 		<view class="footer" v-show="!show_popups">
 			<view @click="girlsEnglishName">
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png" ></image>
+				<view class="name_img">
+					<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" ></image>
+				</view>
 				<view class="top">
 					<view>女生英文名</view>
 					<view><view>TOP</view> <view>100</view></view>
 				</view>
 			</view>
 			<view>
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png" ></image>
+				<view class="name_img">
+					<image src="http://pic.doggieye.com/20200417/68ae23fda2af4e3e81a6fbb15e4330dd.png" ></image>
+				</view>
 				<view class="top" @click="random">
 					<view>随机英文名</view>
 					<view>随意有惊喜</view>
 				</view>
 			</view>
 			<view @click="boysEnglishName">
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png" ></image>
+				<view class="name_img">
+					<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" ></image>
+				</view>
 				<view class="top">
 					<view>男生英文名</view>
 					<view><view>TOP</view> <view>100</view></view>
 				</view>
 			</view>
 			<view>
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png" ></image>
+				<view class="name_img">
+					<image src="http://pic.doggieye.com/20200417/5330272664ea4176a63e5747f89d5c89.png" ></image>
+				</view>
 				<view class="top" @click="letter">
 					<view>字母取名</view>
 					<view>ABCDEFG</view>
 				</view>
 			</view>
 			<view @click="neutralEnglishName">
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png" ></image>
+				<view class="name_img">
+					<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" ></image>
+				</view>
 				<view class="top">
 					<view>中性英文名</view>
 					<view><view>TOP</view> <view>100</view></view>
@@ -75,7 +86,7 @@
 				</view>
 			</view>
 			<view class="list">
-				<view class="details" v-for="(item,key) in list " :key="key">
+				<view class="details" v-for="(item,key) in list1 " :key="key" @click="Details(item)">
 					<view class="left_details">
 						<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png"></image>
 						<view>
@@ -87,7 +98,7 @@
 						<view :style="'color: #FF97D9;'" v-if="item.sex==2">女生</view>
 						<view :style="'color: #53A0E8;'" v-if="item.sex==1">男生</view>
 						<view :style="'color: #FFB400;'" v-if="item.sex==3">中性</view>
-						<view :style="'color: #999;'">{{item.usageNumber}}人使用</view>
+						<view :style="'color: #999;'">{{item.usageNumber}}万人使用</view>
 					</view>
 				</view>
 				<view class="tishi" v-show="numbers<1">
@@ -102,6 +113,38 @@
 
 <script>
 	import {post,toast} from '@/index';
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器 
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	
+	function setupWebViewJavascriptBridge(callback) {
+		if (window.WebViewJavascriptBridge) {
+			callback(WebViewJavascriptBridge)
+		} else {
+			document.addEventListener(
+				'WebViewJavascriptBridgeReady',
+				function() {
+					callback(WebViewJavascriptBridge)
+				},
+				false
+			);
+		}
+		//iOS使用
+		if (window.WebViewJavascriptBridge) {
+			return callback(WebViewJavascriptBridge);
+		}
+		if (window.WVJBCallbacks) {
+			return window.WVJBCallbacks.push(callback);
+		}
+		window.WVJBCallbacks = [callback];
+		var WVJBIframe = document.createElement('iframe');
+		WVJBIframe.style.display = 'none';
+		WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+		document.documentElement.appendChild(WVJBIframe);
+		setTimeout(function() {
+			document.documentElement.removeChild(WVJBIframe)
+		}, 0)
+	}
 	export default {
 		data() {
 			return {
@@ -111,11 +154,54 @@
 				keywords:'',
 				data:{},
 				list:[],
-				numbers:false
+				numbers:false,
+				list1:[],
+				size:0
 			}
 		},
+		onReachBottom:function(){
+			this.size+=10;
+			this.circulates(1)
+		},
+		onLoad() {
+			uni.getSystemInfo({success: (res) => {
+				console.log(res.statusBarHeight)
+			}})
+		},
 		methods: {
+			goback:function(){
+				setupWebViewJavascriptBridge(function(bridge) {
+					function iosGobackIndex() {
+						bridge.callHandler('goHome', function(response) {})
+					}
+				function fun1(e){
+					console.log("回到首页")
+				}
+					if (isAndroid) {
+						window.android.goBack('fun1');
+					} else {
+						iosGobackIndex()
+					}
+				})    
+			},
+			Details:function(e){
+				uni.navigateTo({
+					url:"namesDetails?englishName="+e.englishName
+				})
+			},
+			circulates:function(e){
+				for (var i=0;i<10;i++) {
+					if(this.list[i+this.size]){
+						this.list1.push(this.list[i+this.size])
+					}
+				}
+				if(!this.list[9+this.size]&&e==1&&this.enquiry_show){
+					toast("没有更多了")
+				}
+			},
 			enquiry:function(e){
+				this.size=0;
+				this.list=[]
 				if(e.length>0){
 					uni.showLoading({
 					    title: '加载中'
@@ -126,8 +212,7 @@
 							this.list=res[1].data.data.allNameList;
 							this.numbers=this.data.allNameNumber;
 							this.enquiry_show=true;
-						}else{
-							this.msg=res[1].data.msg;
+							this.circulates()
 						}
 						 uni.hideLoading();
 					}).catch((res)=>{
@@ -150,20 +235,25 @@
 			},
 			tab:function(e){
 				this.active=e;
+				this.list1=[];
+				this.size=0;
 				if(e==1){
 					this.list=this.data.allNameList;
 					this.numbers=this.data.allNameNumber;
+					this.circulates()
 				}else if(e==2){
 					this.list=this.data.boyNameList;
 					this.numbers=this.data.boyNameNumber;
+					this.circulates()
 				}else if(e==3){
 					this.list=this.data.girlNameList;
 					this.numbers=this.data.girlNameNumber;
+					this.circulates()
 				}else{
 					this.list=this.data.neutralNameList;
 					this.numbers=this.data.neutralNameNumber;
+					this.circulates()
 				}
-				console.log(this.list)
 			},
 			girlsEnglishName:function(){
 				uni.navigateTo({
@@ -181,20 +271,19 @@
 				})
 			},
 			search:function(){
-				this.show_popups=true
+				this.show_popups=true;
+				this.size=10;
+				this.list=[];
 				uni.pageScrollTo({
 				    scrollTop: 0,
 				    duration:0
 				});
 			},
 			cancel:function(){
-				var that=this;
-				that.guanle()
-				this.keywords=''
-			},
-			guanle:function(){
-				var that=this;
-				that.show_popups=false;
+				this.keywords='';
+				this.enquiry_show=false;
+				this.show_popups=false;
+				this.list1=[];
 			}
 		}
 	}
@@ -286,8 +375,8 @@
 }
 .cancel{
 	width: 120upx;
-	height: 120upx;
-	line-height: 120upx;
+	height: 168upx;
+	line-height: 248upx;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -306,6 +395,7 @@
 		border-radius: 36upx;
 		background-color: #FFFFFF;
 		margin-left: 20upx;
+		margin-top: 80upx;
 	}
 	.flex_input{
 		input{
@@ -319,9 +409,8 @@
 .head_img{
 	.publicity_img{
 		display: block;
-		width: 660upx;
-		height: 200upx;
-		margin: 32upx auto 20upx;
+		width: 100%;
+		margin: 32upx auto;
 	}
 	.search_input{
 		border-radius:44upx;
@@ -344,7 +433,7 @@
 	}
 }
 .top_search{
-	height: 120upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
@@ -376,6 +465,13 @@
 	border-radius:10upx;
 	margin: 26upx auto;
 	box-shadow:0upx 20upx 100upx -40upx #d2dbe0;
+	.name_img{
+		margin-left: 0;
+		width: 96upx;
+		height: 96upx;
+		background-color: #FFFFFF;
+		border-radius: 50%;
+	}
 	>view{
 		width:315upx;
 		height:200upx;
@@ -406,24 +502,29 @@
 	}
 	>view:nth-of-type(1){
 		margin-top: 30upx;
-		background:rgba(239,64,163,0.1);
+		background:url("http://pic.doggieye.com/20200417/54a7ba1956954a30bec7c43b34209e3d.png");
+		background-size: 100%;
 		box-shadow: 0upx 20upx 100upx -40upx #fcf2f8;
 	}
 	>view:nth-of-type(2){
 		margin-top: 30upx;
-		background:rgba(221,175,244,0.5);
+		background:url("http://pic.doggieye.com/20200417/e6373fff21344575917292d4224b5ad6.png");
+		background-size: 100%;
 		box-shadow: 0upx 20upx 100upx -40upx #f3e0fc;
 	}
 	>view:nth-of-type(3){
-		background:rgba(171,214,255,0.5);
+		background:url("http://pic.doggieye.com/20200417/ebb411407e1a48ff8addc577ed6bb865.png");
+		background-size: 100%;
 		box-shadow: 0upx 20upx 100upx -40upx #d8f0fd;
 	}
 	>view:nth-of-type(4){
-		background:rgba(206,224,35,0.4);
+		background:url("http://pic.doggieye.com/20200417/2c70e8ed6da843938a6c574a882ea8fb.png");
+		background-size: 100%;
 		box-shadow: 0upx 20upx 100upx -40upx #f0fc80;
 	}
 	>view:nth-of-type(5){
-		background:rgba(255,165,8,0.3);
+		background:url("http://pic.doggieye.com/20200417/7023545fb2dc4537a9d78e5f9b1028f5.png");
+		background-size: 100%;
 		box-shadow: 0upx 20upx 100upx -50upx #fbc25e;
 	}
 }
@@ -442,16 +543,23 @@
 	box-shadow:0upx 20upx 100upx -40upx #d2dbe0;
 }
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	
+	image{
+		width:28upx;
+		height: 28upx;
+		float: left;
+		position: absolute;
+		top: 66upx;
+		left: 24upx;
+	}
 }
 </style>

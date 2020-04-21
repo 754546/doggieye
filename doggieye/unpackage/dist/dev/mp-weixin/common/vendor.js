@@ -7750,8 +7750,8 @@ internalMixin(Vue);
 var _jsMd = _interopRequireDefault(__webpack_require__(/*! js-md5 */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // ad6755129abbcaaa99d5e74f05f7c903
 // var domainName='https://doggieye.com:8081/doggieye-api'
-var domainName = 'http://192.168.1.244:8081/doggieye-api';
-// var domainName='http://app.test.doggieye.com:8081/doggieye-api'
+// var domainName='http://192.168.1.244:8081/doggieye-api'
+var domainName = 'http://app.test.doggieye.com:8081/doggieye-api';
 var post = function post(url, data) {
   var sign = '';
   if (data && !(typeof data == 'string')) {
@@ -7770,9 +7770,10 @@ var post = function post(url, data) {
     header: {
       'content-type': 'application/json;charset=UTF-8',
       'token': uni.getStorageSync('token'),
-      'sign': sign } });
+      'sign': sign }
 
-
+    //, success: () => {}
+  });
 };exports.post = post;
 var toast = function toast(title, time, icon) {
   if (icon == 1) {

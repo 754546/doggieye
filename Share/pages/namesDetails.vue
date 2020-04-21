@@ -7,18 +7,15 @@
 		<view class="container">
 			<view class="head_content">
 				<view class="name" :class="{'color1':data.sex=='2','color2':data.sex=='1','color3':data.sex=='3'}">
-					{{data.englishName}}
+					{{data.englishName?data.englishName:''}}
 				</view>
-		<!-- 		<view class="pronunciation">
-					{{data.phoneticSymbol}}
-				</view> -->
 				<view class="noon">
-					{{data.chineseName}}
+					{{data.chineseName&&data.chineseName!='null'?data.chineseName:''}}
 				</view>
 				<view class="translation" @click="play" :class="{'bg1':data.sex=='2','bg2':data.sex=='1','bg3':data.sex=='3'}">
-					<image src="http://pic.doggieye.com/20200323/f1272451839a446c8c381788643b17c7.png" v-if="data.sex=='2'"></image>
-					<image src="http://pic.doggieye.com/20200323/1801a0ab7e894bc9a19e7d426feb0fe6.png" v-if="data.sex=='1'"></image>
-					<image src="http://pic.doggieye.com/20200323/dc69be7b960445b4b804168e472b0529.png" v-if="data.sex=='3'"></image>
+					<image src="http://pic.doggieye.com/20200417/1c03ddea919846c297ac197c1faa21aa.png" v-if="data.sex=='2'"></image>
+					<image src="http://pic.doggieye.com/20200417/b255943ced79426c810d3a5c25f697aa.png" v-if="data.sex=='1'"></image>
+					<image src="http://pic.doggieye.com/20200417/4ef22e1229354de197eac2d8b4c39407.png" v-if="data.sex=='3'"></image>
 					<view>读一读</view>
 				</view>
 			</view>
@@ -28,23 +25,23 @@
 				</view>
 				<view>
 					<view>名字性别：</view>
-					<view>{{data.sex}}</view>
+					<view><text v-if="data.sex==1">男</text><text  v-if="data.sex==2">女</text><text  v-if="data.sex==3">中性</text></view>
 				</view>
 				<view>
 					<view>来源语种：</view>
-					<view>{{data.language}}</view>
+					<view>{{data.language&&data.language!='null'?data.language:''}}</view>
 				</view>
 				<view>
 					<view>名字寓意：</view>
-					<view>{{data.allegory}}</view>
+					<view>{{data.allegory&&data.allegory!='null'?data.allegory:''}}</view>
 				</view>
 				<view>
 					<view>名字印象：</view>
-					<view>{{data.impression}}</view>
+					<view>{{data.impression&&data.impression!='null'?data.impression:""}}</view>
 				</view>
 				<view>
 					<view>名字含义：</view>
-					<view>{{data.signification}}</view>
+					<view>{{data.signification&&data.signification!='null'?data.signification:''}}</view>
 				</view>
 			</view>
 		</view>
@@ -58,15 +55,28 @@
 	export default {
 		data() {
 			return {
-				data:{}
+				data:{},
+				token:'',
+				tokenList:[]
 			}
 		},
 		onLoad(e) {
-			this.data=e
+			post("/api/game/englishName/info",e.englishName).then((res)=>{
+				if(res[1].data.code==200){
+					this.data=res[1].data.data
+					this.token=res[1].data.data.tk;
+					this.tokenList=this.token.split("-");
+					this.token=this.tokenList[0]+this.tokenList[1]+'-'+this.tokenList[2];
+				}
+				 uni.hideLoading();
+			}).catch((res)=>{
+				toast(res[1].data.msg)
+				uni.hideLoading();
+			})
 		},
 		methods: {	
 			play:function(){
-				innerAudioContext.src = "http://tsn.baidu.com/text2audio?lan=zh&ctp=1&cuid=abcdxxx&tok=24.9f5734d6f996169601c25e72c7dcb72a.2592000.1587521840.282335-18781667&vol=10&per=4&spd=5&pit=5&aue=3&tex="+this.data.name;
+				innerAudioContext.src = "http://tsn.baidu.com/text2audio?lan=zh&ctp=1&cuid=abcdxxx&tok="+this.token+"&vol=10&per=4&spd=5&pit=5&aue=3&tex="+this.data.englishName;
 				innerAudioContext.play()
 			},
 			goback:function(){
@@ -148,11 +158,15 @@
 		.head_content{
 			width:630upx;
 			height:429upx;
-			background:rgba(255,255,255,1);
+			// background:#FF97D9;
 			box-shadow:0px 10upx 29upx 3upx rgba(83,160,232,0.15);
 			border-radius:30upx;
 			margin: 26upx auto;
 			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items:flex-start;
+			flex-wrap: wrap;
 			.translation{
 				width: 212upx;
 				height: 76upx;
@@ -174,13 +188,15 @@
 				}
 			}
 			.name{
-				width:100%;
-				height:60upx;
+				height:110upx;
 				font-size:64upx;
 				font-weight:bold;
-				margin: 70upx auto 30upx;
+				margin: 30upx auto -20upx;
 				text-align: center;
-				line-height: 60upx;
+				line-height: 100upx;
+				background: url('http://pic.doggieye.com/20200420/d5ad11c11de04adabdd32b847653566e.png');
+				background-size: 100% 100%;
+				background-repeat: repeat-x;
 			}
 			.pronunciation{
 				height:40upx;

@@ -150,14 +150,23 @@
 			}
 		},
 		onLoad(e) {
-			if(e.addressId){
-				this.addressId=e.addressId;
+			if(e.id){
 				this.item=e;
-				this.type=e.type
+				this.type=e.type;
+			}else{
+				this.getAddress()
 			}
 			this.init()
 		},
 		methods: {
+			getAddress:function(){
+				var that=this;
+				post("/api/user/shippingaddress/list",{"vo": {"isDefault": 1,"userId":uni.getStorageSync('userId') }}).then((res)=>{
+					that.item=res[1].data.data.list[0];
+				}).catch((res)=>{
+					toast(res[1].data.msg+",加载默认地址失败")
+				})
+			},
 			address:function(){
 				if(this.type==1){
 					uni.navigateTo({
@@ -170,15 +179,10 @@
 					this.type=2
 				}else{
 					this.type=1
+					this.getAddress()
 				}
-				
 			},
 			init:function(){
-				post("/api/user/shippingaddress/list",{"vo": {"isDefault": 1,"userId":uni.getStorageSync('userId') }}).then((res)=>{
-					this.item=res[1].data.data.list[0];
-				}).catch((res)=>{
-					toast(res[1].data.msg+",加载默认地址失败")
-				})
 				var that=this;
 				post('/api/box/info/getNowBox').then((res)=>{
 					if(res[1].data.code==200){
@@ -219,7 +223,7 @@
 			order:function(){
 				var data={}
 				if(this.type==1){
-					if(this.addressId){
+					if(this.item.id){
 						data={
 						  "boxId": this.data.id,
 						  "boxNumber": this.number,
@@ -229,7 +233,7 @@
 						  "orderRemark":this.orderRemark,
 						  "userId": uni.getStorageSync('userId'),
 						  salesmanCode:this.salesmanCode,
-						  shippingAddressId:this.addressId
+						  shippingAddressId:this.item.id
 						}
 						this.createOrder(data)
 					}else{
@@ -266,8 +270,8 @@
 				if(!this.show){
 					this.show=!this.show
 				}else{
-					if(this.addressId){
-						uni.redirectTo({
+					if(this.item.id){
+						uni.reLaunch({
 							url:"index"
 						})
 					}else{
