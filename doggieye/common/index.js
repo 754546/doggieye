@@ -2,8 +2,8 @@ import Vue from 'vue';
 import md5 from 'js-md5';
 // ad6755129abbcaaa99d5e74f05f7c903
 // var domainName='https://doggieye.com:8081/doggieye-api'
-var domainName='http://192.168.1.244:8081/doggieye-api'
-// var domainName='http://app.test.doggieye.com:8081/doggieye-api'
+// var domainName='http://192.168.1.244:8081/doggieye-api'
+var domainName='http://app.test.doggieye.com:8081/doggieye-api'
 export const post=function(url,data){
 	var sign='';
 	if(data&&!(typeof data=='string')){
@@ -24,6 +24,7 @@ export const post=function(url,data){
 			'token':uni.getStorageSync('token'),	
 			'sign':sign
 		}
+		//, success: () => {}
 	});
 }
 export const toast=function(title,time,icon){

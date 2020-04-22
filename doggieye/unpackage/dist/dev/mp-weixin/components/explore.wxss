@@ -163,19 +163,6 @@
       font-size: 30rpx;
       float: left;
 }
-.images .shadow text.data-v-055b8cbc:last-child {
-      float: right;
-      font-size: 28rpx;
-      width: 100rpx;
-      height: 48rpx;
-      color: #FFFFFF;
-      border-radius: 24rpx;
-      background: #333333;
-      line-height: 48rpx;
-      text-align: center;
-      display: block;
-      margin: 6rpx 12rpx 0 0;
-}
 .guarantee.data-v-055b8cbc {
   display: -webkit-box;
   display: -webkit-flex;

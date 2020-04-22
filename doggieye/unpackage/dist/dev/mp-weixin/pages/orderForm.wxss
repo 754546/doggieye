@@ -47,7 +47,7 @@ page.data-v-a80dc362 {
       display: inline-block;
       position: relative;
 }
-.tab > view > view text.data-v-a80dc362:last-child {
+.tab > view > view .origin.data-v-a80dc362 {
         position: absolute;
         top: -8rpx;
         right: -24rpx;

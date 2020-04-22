@@ -1,15 +1,25 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>首字母取名</b>
+			<view @click="goback">
+				<image src="../static/goback.png"></image>
+			</view>
+			<view>首字母取名</view>
 		</view>
 		<view class="nameList">
 			<view class="name" v-for="(item,index) in data" :key="index" @click="Details(item)">
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png"></image>
+				<view class="sex_img1 sex_img" v-if="item.sex==1">
+					<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png"></image>
+				</view>
+				<view class="sex_img2 sex_img" v-if="item.sex==2">
+					<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png"></image>
+				</view>
+				<view class="sex_img3 sex_img" v-if="item.sex==3">
+					<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" ></image>
+				</view>
 				<view class="details">
 					<view><view>{{item.englishName}}</view><view style="color: #FFB400;" v-if="item.sex==3">中性</view><view style="color: #FF97D9;" v-if="item.sex==2">女生</view><view style="color: #53A0E8;" v-if="item.sex==1">男生</view></view>
-					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{data.clickNumber}}万人使用</view></view>
+					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.clickNumber}}万人使用</view></view>
 				</view>
 			</view>
 		</view>
@@ -19,22 +29,50 @@
 </template>
 
 <script>
-	import {post} from '@/index';
+	import {post,toast} from '@/index';
 	export default {
 		data() {
 			return {
-				data:[]
+				data:[],
+				pageSize:1,
+				pageNumber:10,
+				initial:'',
+				totalPage:1
 			}
 		},
 		onLoad(e) {
-			post('/api/game/englishName/list',{"vo": { "initial": e.initial, }
-			}).then((res)=>{
-				this.data=res[1].data.data.list
-			}).catch((res)=>{
-				console.log("出错了")
-			})	
+			this.initial= e.initial
+			this.getInfo()
+		},
+		onReachBottom:function(){
+			if(this.pageSize<this.totalPage){
+				this.pageSize++;
+				this.getInfo()
+			}else{
+				toast('没有更多了')
+			}
 		},
 		methods: {
+			getInfo:function(){
+				uni.showLoading()
+				var timeToast=setTimeout(function () {
+				 	toast('网络连接超时')
+					uni.hideLoading()
+				}, 15000);
+				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo": { "initial": this.initial, }
+				}).then((res)=>{
+					for (var i=0;i<res[1].data.data.list.length;i++) {
+						this.data.push(res[1].data.data.list[i])
+					}
+					this.totalPage=res[1].data.data.totalPage;
+					clearTimeout(timeToast)
+					uni.hideLoading()
+				}).catch((res)=>{
+					uni.hideLoading()
+					toast(res[1].data.msg)
+					clearTimeout(timeToast)
+				})
+			},
 			top:function(){
 				uni.pageScrollTo({
 				    scrollTop: 0,
@@ -43,7 +81,7 @@
 			},
 			Details:function(e){
 				uni.navigateTo({
-					url:"namesDetails?englishName="+e.englishName+"&chineseName="+e.chineseName+"&sex="+e.sex+"&allegory="+e.allegory+"&language="+e.language+"&signification="+e.signification 
+					url:"namesDetails?englishName="+e.englishName
 				})
 			},
 			goback:function(){
@@ -63,9 +101,12 @@
 	right: 26upx;
 	bottom: 120upx;
 }
+.content{
+	min-height: 100vh;
+	background-color: #E4F2FA;
+}
 .nameList{
 	width: 100%;
-	background-color: #E4F2FA;
 	padding-bottom: 20upx;
 	overflow: hidden;
 	.name{
@@ -78,12 +119,36 @@
 		justify-content: flex-start;
 		align-items: center;
 		margin: 20upx auto 0;
-		image{
+		.sex_img{
 			width:96upx;
 			height:96upx;
-			background:rgba(247,222,255,1);
-			border-radius:50%;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			margin-left: 26upx;
+			
+		}
+		.sex_img1{
+			background:#E2F1FF;
+			image{
+				width:64upx;
+				height:66upx;
+			}
+		}
+		.sex_img2{
+			background:#FFE4EE;
+			image{
+				width:72upx;
+				height:66upx;
+			}
+		}
+		.sex_img3{
+			background:#FFE595;
+			image{
+				width:60upx;
+				height:60upx;
+			}
 		}
 		.details{
 			margin-left: 26upx;
@@ -96,26 +161,30 @@
 		}
 	}
 }
-
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	position: relative;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

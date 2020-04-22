@@ -17,7 +17,7 @@
 							</view>
 						</view>
 					</view>
-					<view class="title">
+			<!-- 		<view class="title">
 						<view class="h3">
 							<view>{{data.toyName?data.toyName:''}}</view>
 							<view><text>库存</text><text>9999+</text></view>
@@ -27,7 +27,7 @@
 						<view class="pic">
 							￥70.00
 						</view>
-					</view>
+					</view> -->
 				</view>
 				<view class="info" >
 					<view class="tab">
@@ -60,9 +60,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="buyToy">
+<!-- 		<view class="buyToy">
 			立即购买
-		</view>
+		</view> -->
 	</view>
 </template>
 

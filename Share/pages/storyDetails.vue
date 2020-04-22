@@ -45,11 +45,11 @@
 			<view class="story_content">
 				<view class="story_content_li" v-for="(item,index) in list" :key="index" @click="jump(item.id)">
 					<view class="storyTitle">
-						<text>{{item.knowledge}}</text>
-						<text v-if="item.knowledge.length>6">...</text>
+						<view style="font-size: 20upx !important;">{{item.knowledge}}</view>
+						<view v-if="item.knowledge.length>6">...</view>
 						<image src="../static/pic-fenleitag.png"></image>
 					</view>
-					<image :src="item.storyCover" class="bg_story"></image>
+					<image :src="item.storyCover" class="bg_story" mode="aspectFill"></image>
 					<view class="commentary">
 						<image src="../static/x.png" v-for="(img,key) in item.stars" :key="key"></image>
 						<image src="../static/bx.png"  v-if='item.Bstars'></image>
@@ -312,24 +312,24 @@
 	min-height: 40upx;
 	max-height: 286upx;
 	overflow: hidden;
-	text{
+	view{
 		display: block;
 		margin: 0 auto;
 		text-align: center;
-		font-size:24upx;
+		font-size:24upx !important;
 		word-wrap: break-word; 
 		font-family:Source Han Sans CN;
 		color:rgba(29,32,31,1);
 		line-height: 35upx;
 		background-color: #ffea00;
 	}
-	text:nth-of-type(1){
+	view:nth-of-type(1){
 		max-height: 196upx;
 		overflow: hidden;
 		padding-top: 6upx;
 		padding-bottom: 10upx;
 	}
-	text:nth-of-type(2){
+	view:nth-of-type(2){
 		line-height: 20upx;
 		max-height: 20upx;
 		padding-bottom: 10upx;

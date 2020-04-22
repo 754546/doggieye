@@ -1,26 +1,39 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<b>为您推荐</b>
+			<view @click="goback">
+				<image src="../static/goback.png" ></image>
+			</view>
+			<view>为您推荐</view>
 		</view>
 		<view class="Introduction">
-			<view class="Introduction_head">
-				<image src="http://pic.doggieye.com/20200320/08c9c4a090ca4ed79f36cad3d2807525.png"  class="head_img"></image>
-				<view>女生</view>
+			<view :class="{Introduction_head:true}" v-if="sex==1">
+				<image src="http://pic.doggieye.com/20200417/efd351ab4163466595bf12caa330ec8c.png"  class="head_img"></image>
+				<view style="color: #53A0E8;">男生</view>
+			</view>
+			<view class="Introduction_head" v-if="sex==2">
+				<image src="http://pic.doggieye.com/20200417/994f9182d9ff405e9c0f0cf95b39bb0c.png"  class="head_img"></image>
+				<view style="color: #FF97D9;">女生</view>
+			</view>
+			<view class="Introduction_head" v-if="sex==3">
+				<image src="http://pic.doggieye.com/20200417/905260684ebe4217b6d33cffb52d9781.png"  class="head_img"></image>
+				<view  style="color: #FFE628;">中性</view>
 			</view>
 			<view class="word">
 				<view>帮您选了8个好听的英文名，一起来看看吧！</view>
-				<view class="button_grils">
+				<view :class="{'sex1':sex==1,'sex2':sex==2,'sex3':sex==3,'button_grils':true}" @click="getInfo">
 					换一批
 				</view>
 			</view>
 		</view>
 		<view class="nameList">
 			<view class="name" v-for="(item,index) in data" :key="index">
-				<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png"></image>
+				<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" v-if="item.sex==1" style="background:#E2F1FF;"></image>
+				<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" v-if="item.sex==2" style="background:rgba(247,222,255,1);"></image>
+				<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" v-if="item.sex==3" style="background:#FFE595;"></image>
 				<view class="details">
-					<view><view>ADele</view><view style="color: #FF97D9;">男生 NO.1</view></view>
-					<view><view>阿黛尔</view><view style="color: #999999;">20万人使用</view></view>
+					<view><view>{{item.englishName}}</view><view style="color: #FF97D9;" v-if="item.sex==2">女生</view><view style="color: #53A0E8;" v-if="item.sex==1">男生</view><view style="color: #FFE628;" v-if="item.sex==3">中性</view></view>
+					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.usageNumber}}万人使用</view></view>
 				</view>
 			</view>
 		</view>
@@ -28,19 +41,57 @@
 </template>
 
 <script>
-	import {post} from '@/index';
+	import {post,toast} from '@/index';
 	export default {
 		data() {
 			return {
-				data:[1,3,2,4,5,6,7,89,85,54,,456,4,64,6,46,4,64,6,56,4,54,4,54,45,]
-				}
+				data:[],
+				sex:1
+			}
 		},
-		methods: {		
+		onLoad(e) {
+			this.sex=e.sex;
+			this.getInfo()
+		},
+		methods: {	
+			goBack:function(){
+				uni.navigateBack({
+				    delta: 1
+				});
+			},
+			getInfo:function(){
+				uni.showLoading()
+				var timeToast=setTimeout(function () {
+				 	toast('网络连接超时')
+					uni.hideLoading()
+				}, 15000);
+				post("/api/game/englishName/RandomName",{sex:this.sex}).then((res)=>{
+					this.data=res[1].data.data
+					uni.hideLoading()
+					clearTimeout(timeToast)
+				}).catch((res)=>{
+					uni.hideLoading()
+					toast(res[1].data.msg)
+					clearTimeout(timeToast)
+				})
+			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+.sex1{
+	background: url("http://pic.doggieye.com/20200417/c238414221254325940ced74a1fee7f1.png");
+	background-size: 100%;
+}
+.sex2{
+	background: url("http://pic.doggieye.com/20200320/8445b2e16cfd4f6a825025d6987214be.png");
+	background-size: 100%;
+}
+.sex3{
+	background: url("http://pic.doggieye.com/20200417/d248b6777d4940c985a02bcbb1c9019b.png");
+	background-size: 100%;
+}
 .nameList{
 	width: 100%;
 	background-color: #E4F2FA;
@@ -59,7 +110,6 @@
 		image{
 			width:96upx;
 			height:96upx;
-			background:rgba(247,222,255,1);
 			border-radius:50%;
 			margin-left: 26upx;
 		}
@@ -87,14 +137,12 @@
 			margin-top: 30upx;
 		}
 		.button_grils{
-			background: url("http://pic.doggieye.com/20200320/8445b2e16cfd4f6a825025d6987214be.png");
 			width:212upx;
-			height:72upx;
+			height:76upx;
 			font-size:30upx;
 			color:rgba(255,255,255,1);
 			text-align: center;
-			background-size: 100%;
-			line-height: 72upx;
+			line-height: 76upx;
 			margin: 20upx auto;
 		}
 	}
@@ -107,27 +155,40 @@
 		margin: 16upx auto;
 		text-align: center;
 		image{
-			width: 192upx;
-			height: 192upx;
+			width: 230upx;
+			height: 200upx;
 			border-radius: 50%;
 			margin: 34upx auto;
 		}
 		view{
 			font-size:32upx;
-			color: #FF97D9;
 		}
 	}
 }
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
+	image{
+		width:28upx;
+		height: 28upx;
+	}
 }
 </style>

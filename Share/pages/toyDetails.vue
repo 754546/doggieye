@@ -188,6 +188,8 @@ body{
 .imgListD image{
 	width: 100%;
 	display: block;
+	padding: 0;
+	margin: 0;
 }
 .tab_content{
 	margin-top: 20upx;

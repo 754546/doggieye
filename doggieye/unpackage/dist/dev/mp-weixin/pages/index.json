@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "index": "/components/index",
-    "box": "/components/explore",
-    "me": "/components/personalCenter"
-  }
-}

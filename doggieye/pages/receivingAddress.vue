@@ -40,12 +40,16 @@
 				statusBarHeight:getApp().globalData.statusBarHeight,
 				titile:'',
 				data:[],
-				choose:0
+				choose:0,
+				orderId:''
 			}
 		},
 		onLoad(e) {
 			if(e.choose==1){
 				this.choose=e.choose
+			}else if(e.choose==2){
+				this.choose=e.choose;
+				this.orderId=e.orderId;
 			}
 			this.getinfo()
 		},
@@ -56,7 +60,19 @@
 			check:function(item){
 				if(this.choose==1){
 					uni.redirectTo({
-						url:"boxDetails?addressId="+item.id+"&type=1&isDefault=1&consignee="+item.consignee+"&phone="+item.phone+"&province="+item.province+"&city="+item.city+"&county="+item.county+"&detailedAddress="+item.detailedAddress
+						url:"boxDetails?id="+item.id+"&type=1&isDefault=1&consignee="+item.consignee+"&phone="+item.phone+"&province="+item.province+"&city="+item.city+"&county="+item.county+"&detailedAddress="+item.detailedAddress
+					})
+				}else if(this.choose==2){
+					post("/api/buy/order/info/updateAddress",{"orderId":this.orderId,"shippingAddressId":item.id}).then((res)=>{
+						if(res[1].data.code==200){
+							uni.navigateBack({
+								delta: 1
+							});
+						}else{
+							toast(res[1].data.msg)
+						}
+					}).catch((res)=>{
+						toast(res[1].data.msg)
 					})
 				}
 				
