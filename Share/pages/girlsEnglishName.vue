@@ -13,7 +13,7 @@
 				</view>
 				<view class="details">
 					<view><view>{{item.englishName}}</view><view style="color: #FF97D9;">女生 NO.{{index+1}}</view></view>
-					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.clickNumber}}万人使用</view></view>
+					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.usageNumber}}万人使用</view></view>
 				</view>
 			</view>
 		</view>
@@ -131,6 +131,12 @@
 				display: flex;
 				justify-content: space-between;
 				line-height: 50upx;
+				>view:first-child{
+					width: 300upx;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
 			}
 		}
 	}
