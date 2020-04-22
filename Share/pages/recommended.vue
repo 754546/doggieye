@@ -1,8 +1,10 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goBack"></image>
-			<b>为您推荐</b>
+			<view @click="goback">
+				<image src="../static/goback.png" ></image>
+			</view>
+			<view>为您推荐</view>
 		</view>
 		<view class="Introduction">
 			<view :class="{Introduction_head:true}" v-if="sex==1">
@@ -19,7 +21,7 @@
 			</view>
 			<view class="word">
 				<view>帮您选了8个好听的英文名，一起来看看吧！</view>
-				<view :class="{'sex1':sex==1,'sex2':sex==2,'sex3':sex==3,'button_grils':true}">
+				<view :class="{'sex1':sex==1,'sex2':sex==2,'sex3':sex==3,'button_grils':true}" @click="getInfo">
 					换一批
 				</view>
 			</view>
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-	import {post} from '@/index';
+	import {post,toast} from '@/index';
 	export default {
 		data() {
 			return {
@@ -59,12 +61,18 @@
 			},
 			getInfo:function(){
 				uni.showLoading()
-				post("/api/game/englishName/RandomName",{sex:this.sex}).then((res)=>{
-						this.data=res[1].data.data
-						uni.hideLoading()
-				}).catch((res)=>{
-					toast(res[1].data.msg)
+				var timeToast=setTimeout(function () {
+				 	toast('网络连接超时')
 					uni.hideLoading()
+				}, 15000);
+				post("/api/game/englishName/RandomName",{sex:this.sex}).then((res)=>{
+					this.data=res[1].data.data
+					uni.hideLoading()
+					clearTimeout(timeToast)
+				}).catch((res)=>{
+					uni.hideLoading()
+					toast(res[1].data.msg)
+					clearTimeout(timeToast)
 				})
 			}
 		}
@@ -74,12 +82,15 @@
 <style scoped lang="scss">
 .sex1{
 	background: url("http://pic.doggieye.com/20200417/c238414221254325940ced74a1fee7f1.png");
+	background-size: 100%;
 }
 .sex2{
 	background: url("http://pic.doggieye.com/20200320/8445b2e16cfd4f6a825025d6987214be.png");
+	background-size: 100%;
 }
 .sex3{
 	background: url("http://pic.doggieye.com/20200417/d248b6777d4940c985a02bcbb1c9019b.png");
+	background-size: 100%;
 }
 .nameList{
 	width: 100%;
@@ -131,7 +142,6 @@
 			font-size:30upx;
 			color:rgba(255,255,255,1);
 			text-align: center;
-			background-size: 100%;
 			line-height: 76upx;
 			margin: 20upx auto;
 		}
@@ -166,13 +176,19 @@
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

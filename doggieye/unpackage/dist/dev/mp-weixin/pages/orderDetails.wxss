@@ -24,6 +24,39 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.rotate1 {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+.rotate2 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.express_footer {
+  width: 100%;
+  height: 80rpx;
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 80rpx;
+}
+.express_footer .iconfont {
+    display: inline-block;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+}
+.express_li {
+  font-size: 24rpx;
+  padding-left: 42rpx;
+  padding-top: 20rpx;
+}
+.express_li view:first-child {
+    color: #4E83BF;
+}
+.express_li view:last-child {
+    color: #999999;
+    font-size: 20rpx;
+}
 .express {
   margin: 0 16rpx;
   border-top: 1rpx solid #EDEFF3;
@@ -49,6 +82,9 @@
       -webkit-box-align: center;
       -webkit-align-items: center;
               align-items: center;
+}
+.express .express_title > view:first-child text {
+        margin-left: 10rpx;
 }
 .express .express_title > view:first-child image {
         width: 32rpx;

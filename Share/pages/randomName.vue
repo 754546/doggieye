@@ -1,34 +1,36 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>随机取名</b>
+			<view @click="goback">
+				<image src="../static/goback.png" ></image>
+			</view>
+			<view>随机取名</view>
 		</view>
 		<radio-group  class="radio-groups" @change="sexFun">
 			<view class="sex_content">
-					<view :class="{'sex':true,'big':sex==1}" >
+					<view :class="{'sex':true,'big':sex==1}" @click="radios(1)">
 						<image src="http://pic.doggieye.com/20200417/efd351ab4163466595bf12caa330ec8c.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view >
-								<radio value="1"  color="#53A0E8" class="danxuan" checked/>
+								<radio value="1"  color="#53A0E8" class="danxuan" checked :checked="sex==1"/>
 							</view>
 							<view>男生</view>
 						</label>
 					</view>	 
-					<view :class="{'sex':true,'big':sex==2}" >
+					<view :class="{'sex':true,'big':sex==2}" @click="radios(2)">
 						<image src="http://pic.doggieye.com/20200417/994f9182d9ff405e9c0f0cf95b39bb0c.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view>
-								<radio value="2" color="#FF97D9"  class="danxuan"/>
+								<radio value="2" color="#FF97D9"  class="danxuan" :checked="sex==2"/>
 							</view>
 							<view>女生</view>
 						</label>
 					</view>	 
-					<view :class="{'sex':true,'big':sex==3}" >
+					<view :class="{'sex':true,'big':sex==3}" @click="radios(3)">
 						<image src="http://pic.doggieye.com/20200417/905260684ebe4217b6d33cffb52d9781.png"  class="head_img"></image>
 						<label class="uni-list-cell uni-list-cell-pd radios">
 							<view>
-								<radio value="3" color="#FFE628"  class="danxuan"/>
+								<radio value="3" color="#FFE628"  class="danxuan" :checked="sex==3"/>
 							</view>
 							<view>中性</view>
 						</label>
@@ -54,7 +56,7 @@
 </template>
 
 <script>
-	import {post} from '@/index';
+	import {post,toast} from '@/index';
 	export default {
 		data() {
 			return {
@@ -64,11 +66,12 @@
 				dingshi:''
 			}
 		},
-		onLoad() {
-		},
 		methods: {	
 			sexFun:function(e){
 				this.sex=e.target.value;
+			},
+			radios:function(e){
+				this.sex=e
 			},
 			goback:function(){
 				window.history.go(-1);
@@ -168,7 +171,6 @@
 		
 	}
 }
-
 .head{
 	height: 168upx;
 	width: 100%;
@@ -180,14 +182,19 @@
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	position: relative;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 .content{

@@ -12,8 +12,8 @@ export const post=(url,data)=>{
 	sign=md5(sign).toUpperCase();
 	
 	return uni.request({
-		url:"https://www.doggieye.com:8081/doggieye-api"+url, //仅为示例，并非真实接口地址。
-		// url:"http://app.test.doggieye.com:8081/doggieye-api"+url,
+		// url:"https://www.doggieye.com:8081/doggieye-api"+url, //仅为示例，并非真实接口地址。
+		url:"http://app.test.doggieye.com:8081/doggieye-api"+url,
 		// url:"http://192.168.1.244:8081/doggieye-api"+url,
 		data:data,
 		method:'POST',

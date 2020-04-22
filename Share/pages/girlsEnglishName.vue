@@ -1,8 +1,10 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>女生英文名TOP100</b>
+			<view @click="goback">
+				<image src="../static/goback.png"></image>
+			</view>
+			<view>女生英文名TOP100</view>
 		</view>
 		<view class="nameList">
 			<view class="name" v-for="(item,index) in data" :key="index"  @click="Details(item)">
@@ -45,14 +47,22 @@
 		},
 		methods: {
 			getInfo:function(){
-				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo": {"isGirlTop":1}
-				}).then((res)=>{
+				uni.showLoading()
+				var timeToast=setTimeout(function () {
+				 	toast('网络连接超时')
+					uni.hideLoading()
+				}, 15000);
+				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo": {"isGirlTop":1}}).then((res)=>{
 					for (var i=0;i<res[1].data.data.list.length;i++) {
 						this.data.push(res[1].data.data.list[i])
 					}
 					this.totalPage=res[1].data.data.totalPage;
+					clearTimeout(timeToast)
+					uni.hideLoading()
 				}).catch((res)=>{
-					console.log("出错了")
+					toast(res[1].data.msg)
+					clearTimeout(timeToast)
+					uni.hideLoading()
 				})
 			},
 			top:function(){
@@ -125,7 +135,6 @@
 		}
 	}
 }
-
 .head{
 	height: 168upx;
 	width: 100%;
@@ -137,14 +146,19 @@
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	position: relative;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

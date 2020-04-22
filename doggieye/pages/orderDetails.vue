@@ -13,8 +13,8 @@
 						订单将在<text style="color: #C2BD55;">{{timeM<10?"0"+timeM:timeM}}分{{timeS<10?"0"+timeS:timeS}}秒</text>后关闭
 					</view>
 				</view>
-				<view class="address" v-if="data.isAbholung==0" @click="address()">
-					<view class="address_center">
+				<view class="address" v-if="data.isAbholung==0" >
+					<view class="address_center" @click="address()">
 						<view class="address_left">
 							<view>
 								<image src="http://pic.doggieye.com/20200413/ca41d78f8fd845bb90f19e3f44b6115f.png"></image>
@@ -28,10 +28,20 @@
 							<text class="iconfont icon-jiantouyou"></text>
 						</view>
 					</view>
-					<view class="express">
+					<view class="express" v-if="data.status==3">
 						<view class="express_title">
 							<view><image src="http://pic.doggieye.com/20200421/63c5e21b9fca4a0d9b7ae3c1d6a0655f.png"></image><text>物流信息</text></view>
-							<view>顺丰快递12345682</view>
+							<view>{{expresData.expName}}  {{expresData.expNo}}</view>
+						</view>
+						<view class="express_list">
+							<view class="express_li" v-for="(item,index) in express_data" :key="index" v-show="index==0||express_show">
+								<view>{{item.processInfo}}</view>
+								<view>{{item.upload_Time}}</view>
+							</view>
+						</view>
+						<view class="express_footer" @click="expressDetails">
+							<text>{{express_show?'收起':'点击查看物流详情'}}</text>
+							<text :class="{'rotate1':express_show,'rotate2':!express_show,'icon-jiantouyou':true,'iconfont':true}"></text>
 						</view>
 					</view>
 				</view>
@@ -68,7 +78,7 @@
 						<view class="remarks"><text>备注</text><text v-if='data.orderRemark'>{{data.orderRemark}}</text></view>
 					</view>
 				</view>
-				<view class="button_list" v-if="data.status==1||data.status==2">
+				<view class="button_list" v-if="data.status==1">
 					<button open-type="contact">
 						<image src="http://pic.doggieye.com/20200416/fe1acdc08fd44ddb846d6896584fc275.png"></image>
 						<text>客服</text>
@@ -114,7 +124,7 @@
 </template>
 
 <script>
-	import {post,toast} from '@/common/index'
+	import {post,toast} from '@/common/index';
 	export default {
 		data() {
 			return {
@@ -126,7 +136,9 @@
 				timeS:0,
 				popup_show:false,
 				reason:'其他',
-				expresData:[]
+				expresData:[],
+				express_show:false,
+				express_data:[],
 			}
 		},
 		onLoad(e) {
@@ -136,6 +148,9 @@
 			this.getInfo()
 		},
 		methods: {
+			expressDetails:function(){
+				this.express_show=!this.express_show;
+			},
 			keepPaying:function(){
 				post('/api/buy/order/info/continuedPay',this.id).then((res)=>{
 					if(res[1].data.code==200){
@@ -171,28 +186,25 @@
 				}else if(e==2){
 					this.popup_show=false;
 				}
-				
 			},
 			orderCancel:function(){
+				var that=this;
 				post('/api/buy/order/info/orderCancel',{"cancelExplain": "","cancelReason":this.reason,"orderId":this.id}).then((res)=>{
 					if(res[1].data.code==200){
 						toast("取消订单成功")
-						this.popup_show=false;
-						setTimeout(function(){
-							uni.navigateBack({
-								delta:1
-							})
-						},300)
+						that.popup_show=false;
+						that.getInfo()
 					}else{
 						toast(res[1].data.msg)
 					}
 				})
 			},
 			getExpres:function(){
+				var that=this;
 				post('/api/utils/express/getByExpNo',{"expCode":this.data.expCode,"expNo":this.data.expNo}).then((res)=>{
 					if(res[1].data.code==200){
-						this.expresData=res[1].data.data
-						console.log(res[1].data.data)
+						that.expresData=res[1].data.data
+						that.express_data=JSON.parse(that.expresData.traces)
 					}else{
 						toast(res[1].data.msg)
 					}
@@ -248,6 +260,37 @@
 </script>
 
 <style lang="scss">
+.rotate1{
+	transform: rotate(-90deg);
+}
+.rotate2{
+	transform: rotate(90deg);
+}
+.express_footer{
+	width: 100%;
+	height: 80upx;
+	font-size: 24upx;
+	color: #999999;
+	text-align: center;
+	line-height: 80upx;
+	.iconfont{
+		display: inline-block;
+		font-size: 24upx;
+		margin-left: 10upx;
+	}
+}
+.express_li{
+	font-size: 24upx;
+	padding-left: 42upx;
+	padding-top: 20upx;
+	view:first-child{
+		color: #4E83BF;
+	}
+	view:last-child{
+		color: #999999;
+		font-size: 20upx;
+	}
+}
 .express{
 	margin: 0 16upx;
 	border-top: 1upx solid #EDEFF3;
@@ -261,6 +304,9 @@
 		>view:first-child{
 			display: flex;
 			align-items: center;
+			text{
+				margin-left: 10upx;
+			}
 			image{
 				width: 32upx;
 				height: 32upx;

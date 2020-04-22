@@ -1,8 +1,10 @@
 <template>
 	<view class="content">
 		<view class="head" v-show="!show_popups">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>英文名</b>
+			<view @click="goback">
+				<image src="../static/goback.png"></image>
+			</view>
+			<view>英文名</view>
 		</view>
 		<view class="cancel" @click="cancel" v-show="show_popups">取消</view>
 		<view :class="{head_img1:!show_popups,'head_img':true}" >
@@ -14,7 +16,7 @@
 							<image src="../static/search1.png" v-if="show_popups"></image>
 							<image src="http://pic.doggieye.com/20200316/d5fd5c28d36040c282abca5d796d4a9d.png" v-else></image>
 						</view>
-						<input style="color: #FFFFFF;font-size:30upx;vertical-align: middle;" v-model="keywords" placeholder="输入正文名/英文名进行搜索"  :placeholder-style="show_popups?'color: #999':'color: #fff'" @confirm="enquiry(keywords)"></p>
+						<input style="color: #FFFFFF;font-size:30upx;vertical-align: middle;" v-model="keywords" placeholder="输入中文名/英文名进行搜索"  :placeholder-style="show_popups?'color: #999':'color: #fff'" @confirm="enquiry(keywords)"></p>
 					</view>
 				</view>
 			</view>
@@ -88,7 +90,9 @@
 			<view class="list">
 				<view class="details" v-for="(item,key) in list1 " :key="key" @click="Details(item)">
 					<view class="left_details">
-						<image src="http://pic.doggieye.com/20200316/fbba8768ae194c5e9078d1c2d4b1db2b.png"></image>
+						<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" v-if="item.sex==1"></image>
+						<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" v-if="item.sex==2"></image>
+						<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" v-if="item.sex==3"></image>
 						<view>
 							<view>{{item.englishName}}</view>
 							<view>{{item.chineseName}}</view>
@@ -152,7 +156,7 @@
 				active:1,
 				enquiry_show:false,
 				keywords:'',
-				data:{},
+				data:[],
 				list:[],
 				numbers:false,
 				list1:[],
@@ -171,16 +175,13 @@
 		methods: {
 			goback:function(){
 				setupWebViewJavascriptBridge(function(bridge) {
-					function iosGobackIndex() {
-						bridge.callHandler('goHome', function(response) {})
+					function fun1(e){
+						console.log("回到首页")
 					}
-				function fun1(e){
-					console.log("回到首页")
-				}
 					if (isAndroid) {
 						window.android.goBack('fun1');
 					} else {
-						iosGobackIndex()
+						bridge.callHandler('goHome', function(response) {})
 					}
 				})    
 			},
@@ -200,22 +201,42 @@
 				}
 			},
 			enquiry:function(e){
-				this.size=0;
-				this.list=[]
+				var that=this;
+				that.size=0;
+				that.list=[]
 				if(e.length>0){
-					uni.showLoading({
-					    title: '加载中'
-					});
+					uni.showLoading()
+					var timeToast=setTimeout(function () {
+						toast('网络连接超时')
+						uni.hideLoading()
+					}, 15000);
 					post("/api/game/englishName/getListByChineseName",e).then((res)=>{
 						if(res[1].data.code==200){
-							this.data=res[1].data.data;
-							this.list=res[1].data.data.allNameList;
-							this.numbers=this.data.allNameNumber;
-							this.enquiry_show=true;
-							this.circulates()
+							that.data=res[1].data.data;
+							that.list=res[1].data.data.allNameList;
+							that.numbers=that.data.allNameNumber;
+							if(that.active==1){
+								that.list=that.data.allNameList;
+								that.numbers=that.data.allNameNumber;
+							}else if(that.active==2){
+								that.list=that.data.boyNameList;
+								that.numbers=that.data.boyNameNumber;
+							}else if(that.active==3){
+								that.list=that.data.girlNameList;
+								that.numbers=that.data.girlNameNumber;
+							}else{
+								that.list=that.data.neutralNameList;
+								that.numbers=that.data.neutralNameNumber;
+							}
+							that.enquiry_show=true;
+							that.list1=[];
+							that.size=0;
+							that.circulates()
+							clearTimeout(timeToast)
 						}
-						 uni.hideLoading();
+						uni.hideLoading();
 					}).catch((res)=>{
+						clearTimeout(timeToast)
 						toast(res[1].data.msg)
 						uni.hideLoading();
 					})
@@ -290,10 +311,16 @@
 </script>
 
 <style scoped lang="scss">
+.content{
+	background: url("http://pic.doggieye.com/20191223/7433870a122546a18662159afa56d1e4.png") !important;
+}
 .tishi{
 	width: 100%;
 	height: 100%;
 	text-align: center;
+	view{
+		color: #999999;
+	}
 	image{
 		width: 220upx;
 		height: 220upx;
@@ -352,6 +379,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 48upx;
 	>view{
 		width: 150upx;
 		text-align: center;
@@ -410,7 +438,7 @@
 	.publicity_img{
 		display: block;
 		width: 100%;
-		margin: 32upx auto;
+		margin: 20upx auto;
 	}
 	.search_input{
 		border-radius:44upx;
@@ -553,13 +581,19 @@
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

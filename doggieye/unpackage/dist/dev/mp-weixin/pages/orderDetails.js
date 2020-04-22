@@ -247,6 +247,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var _index = __webpack_require__(/*! @/common/index */ 22); //
 //
 //
@@ -362,15 +372,17 @@ var _index = __webpack_require__(/*! @/common/index */ 22); //
 //
 //
 //
-var _default = { data: function data() {return { loginInfo: false, data: {}, statusBarHeight: getApp().globalData.statusBarHeight, id: '', timeM: 0, timeS: 0, popup_show: false, reason: '其他', expresData: [] };}, onLoad: function onLoad(e) {this.id = e.id;}, onShow: function onShow() {this.getInfo();}, methods: { keepPaying: function keepPaying() {var _this = this;(0, _index.post)('/api/buy/order/info/continuedPay', this.id).then(function (res) {if (res[1].data.code == 200) {_this.wxplay(res[1].data.data.resp);} else {(0, _index.toast)(res[1].data.msg);}});}, wxplay: function wxplay(data) {var that = this;uni.requestPayment({ provider: 'wxpay', signType: String(data.signType), timeStamp: String(data.timeStamp), nonceStr: String(data.nonceStr), package: String(data.package), paySign: String(data.paySign), success: function success(res) {(0, _index.toast)("支付成功");uni.navigateBack({ delta: 1 });} });}, radioChange: function radioChange(e) {this.reason = e.detail.value;}, popup: function popup(e) {if (e == 1) {this.popup_show = true;} else if (e == 2) {this.popup_show = false;}}, orderCancel: function orderCancel() {var _this2 = this;(0, _index.post)('/api/buy/order/info/orderCancel', { "cancelExplain": "", "cancelReason": this.reason, "orderId": this.id }).then(function (res) {if (res[1].data.code == 200) {(0, _index.toast)("取消订单成功");_this2.popup_show = false;setTimeout(function () {uni.navigateBack({ delta: 1 });}, 300);} else {(0, _index.toast)(res[1].data.msg);}});}, getExpres: function getExpres() {var _this3 = this;(0, _index.post)('/api/utils/express/getByExpNo', { "expCode": this.data.expCode, "expNo": this.data.expNo }).then(function (res) {if (res[1].data.code == 200) {_this3.expresData = res[1].data.data;console.log(res[1].data.data);} else {(0, _index.toast)(res[1].data.msg);}});}, getInfo: function getInfo() {var that = this;(0, _index.post)('/api/buy/order/info/info', String(this.id)).then(function (res) {if (res[1].data.code == 200) {that.data = res[1].data.data;if (that.data.status == 1) {var time = (new Date(res[1].data.data.paymentDeadline).valueOf() - new Date(res[1].data.currentTime).valueOf()) / 1000;that.timeM = parseInt(time / 60);that.timeS = parseInt(time % 60);var setTimes = setInterval(function () {if (that.timeS - 1 <= 0) {if (that.timeM - 1 < 0) {that.timeS = 0;that.timeM = 0;clearInterval(setTimes);} else if (that.timeM - 1 >= 0) {that.timeM--;that.timeS = 60;}} else {that.timeS--;}}, 1000);} else if (that.data.status == 3) {that.getExpres();}} else {(0, _index.toast)(res[1].data.msg);}});},
-    goBack: function goBack() {
-      uni.navigateBack({
-        delta: 1 });
-
-    },
-    address: function address() {
-      if (this.data.status == 1 || this.data.status == 2) {
-        uni.navigateTo({
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { loginInfo: false, data: {}, statusBarHeight: getApp().globalData.statusBarHeight, id: '', timeM: 0, timeS: 0, popup_show: false, reason: '其他', expresData: [], express_show: false, express_data: [] };}, onLoad: function onLoad(e) {this.id = e.id;}, onShow: function onShow() {this.getInfo();}, methods: { expressDetails: function expressDetails() {this.express_show = !this.express_show;}, keepPaying: function keepPaying() {var _this = this;(0, _index.post)('/api/buy/order/info/continuedPay', this.id).then(function (res) {if (res[1].data.code == 200) {_this.wxplay(res[1].data.data.resp);} else {(0, _index.toast)(res[1].data.msg);}});}, wxplay: function wxplay(data) {var that = this;uni.requestPayment({ provider: 'wxpay', signType: String(data.signType), timeStamp: String(data.timeStamp), nonceStr: String(data.nonceStr), package: String(data.package), paySign: String(data.paySign), success: function success(res) {(0, _index.toast)("支付成功");uni.navigateBack({ delta: 1 });} });}, radioChange: function radioChange(e) {this.reason = e.detail.value;}, popup: function popup(e) {if (e == 1) {this.popup_show = true;} else if (e == 2) {this.popup_show = false;}}, orderCancel: function orderCancel() {var that = this;(0, _index.post)('/api/buy/order/info/orderCancel', { "cancelExplain": "", "cancelReason": this.reason, "orderId": this.id }).then(function (res) {if (res[1].data.code == 200) {(0, _index.toast)("取消订单成功");that.popup_show = false;that.getInfo();} else {(0, _index.toast)(res[1].data.msg);}});}, getExpres: function getExpres() {var that = this;(0, _index.post)('/api/utils/express/getByExpNo', { "expCode": this.data.expCode, "expNo": this.data.expNo }).then(function (res) {if (res[1].data.code == 200) {that.expresData = res[1].data.data;that.express_data = JSON.parse(that.expresData.traces);} else {(0, _index.toast)(res[1].data.msg);}});}, getInfo: function getInfo() {var that = this;(0, _index.post)('/api/buy/order/info/info', String(this.id)).then(function (res) {if (res[1].data.code == 200) {that.data = res[1].data.data;if (that.data.status == 1) {var time = (new Date(res[1].data.data.paymentDeadline).valueOf() - new Date(res[1].data.currentTime).valueOf()) / 1000;that.timeM = parseInt(time / 60);that.timeS = parseInt(time % 60);var setTimes = setInterval(function () {if (that.timeS - 1 <= 0) {if (that.timeM - 1 < 0) {that.timeS = 0;that.timeM = 0;clearInterval(setTimes);} else if (that.timeM - 1 >= 0) {that.timeM--;that.timeS = 60;}} else {that.timeS--;}}, 1000);} else if (that.data.status == 3) {that.getExpres();}} else {(0, _index.toast)(res[1].data.msg);}});}, goBack: function goBack() {uni.navigateBack({ delta: 1 });}, address: function address() {if (this.data.status == 1 || this.data.status == 2) {uni.navigateTo({
           url: "receivingAddress?choose=2&orderId=" + this.data.id });
 
       }

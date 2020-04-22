@@ -1,8 +1,10 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>男生英文名TOP100</b>
+			<view @click="goback">
+				<image src="../static/goback.png"></image>
+			</view>
+			<view>男生英文名TOP100</view>
 		</view>
 		<view class="nameList">
 			<view class="name" v-for="(item,index) in data" :key="index"  @click="Details(item)" v-if="item.sex==1">
@@ -45,14 +47,23 @@
 		},
 		methods: {
 			getInfo:function(){
+				uni.showLoading()
+				var timeToast=setTimeout(function () {
+				 	toast('网络连接超时')
+					uni.hideLoading()
+				}, 15000);
 				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo": {"isBoyTop": 1}
 				}).then((res)=>{
 					for (var i=0;i<res[1].data.data.list.length;i++) {
 						this.data.push(res[1].data.data.list[i])
+						clearTimeout(timeToast)
 					}
 					this.totalPage=res[1].data.data.totalPage;
+					uni.hideLoading()
 				}).catch((res)=>{
-					console.log("出错了")
+					uni.hideLoading()
+					toast(res[1].data.msg)
+					clearTimeout(timeToast)
 				})
 			},
 			top:function(){
@@ -136,14 +147,19 @@
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	position: relative;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

@@ -2,20 +2,22 @@
 	<view class="content">
 		<view class="head">
 			<image src="../static/goback.png" @click="goback"></image>
-			<b>英文名详情</b>
+			<b>{{data.englishName}}</b>
 		</view>
 		<view class="container">
-			<view class="head_content">
+			<view :class="{'head_content':true,'background1':data.sex=='1','background2':data.sex=='2','background3':data.sex=='3'}">
 				<view class="name" :class="{'color1':data.sex=='2','color2':data.sex=='1','color3':data.sex=='3'}">
 					{{data.englishName?data.englishName:''}}
 				</view>
 				<view class="noon">
-					{{data.chineseName&&data.chineseName!='null'?data.chineseName:''}}
+					<view>
+						{{data.chineseName&&data.chineseName!='null'?data.chineseName:''}}
+					</view>
 				</view>
-				<view class="translation" @click="play" :class="{'bg1':data.sex=='2','bg2':data.sex=='1','bg3':data.sex=='3'}">
-					<image src="http://pic.doggieye.com/20200417/1c03ddea919846c297ac197c1faa21aa.png" v-if="data.sex=='2'"></image>
-					<image src="http://pic.doggieye.com/20200417/b255943ced79426c810d3a5c25f697aa.png" v-if="data.sex=='1'"></image>
-					<image src="http://pic.doggieye.com/20200417/4ef22e1229354de197eac2d8b4c39407.png" v-if="data.sex=='3'"></image>
+				<view class="translation" @click="play" :class="{'bg1':data.sex=='1','bg2':data.sex=='2','bg3':data.sex=='3'}">
+					<image src="http://pic.doggieye.com/20200421/6a17cb45cfb7487f9411831fabd01021.png" v-if="data.sex=='2'"></image>
+					<image src="http://pic.doggieye.com/20200421/aaf376722d744fe6a4e90c3214e68fb5.png" v-if="data.sex=='1'"></image>
+					<image src="http://pic.doggieye.com/20200421/93c0dac05db04bd99bace16c9f00ebd0.png" v-if="data.sex=='3'"></image>
 					<view>读一读</view>
 				</view>
 			</view>
@@ -29,19 +31,19 @@
 				</view>
 				<view>
 					<view>来源语种：</view>
-					<view>{{data.language&&data.language!='null'?data.language:''}}</view>
+					<view>{{data.language&&data.language!='null'?data.language:'无'}}</view>
 				</view>
 				<view>
 					<view>名字寓意：</view>
-					<view>{{data.allegory&&data.allegory!='null'?data.allegory:''}}</view>
+					<view>{{data.allegory&&data.allegory!='null'?data.allegory:'无'}}</view>
 				</view>
 				<view>
 					<view>名字印象：</view>
-					<view>{{data.impression&&data.impression!='null'?data.impression:""}}</view>
+					<view>{{data.impression&&data.impression!='null'?data.impression:"无"}}</view>
 				</view>
 				<view>
 					<view>名字含义：</view>
-					<view>{{data.signification&&data.signification!='null'?data.signification:''}}</view>
+					<view>{{data.signification&&data.signification!='null'?data.signification:'无'}}</view>
 				</view>
 			</view>
 		</view>
@@ -87,16 +89,28 @@
 </script>
 
 <style scoped lang="scss">
+.background1{
+	background: url('http://pic.doggieye.com/20200421/abe1df1580e3489e92d629fbcd09d4ee.png') no-repeat;
+	background-size: 100%;
+}
+.background2{
+	background: url('http://pic.doggieye.com/20200421/acea18065694469c8865b9645ffba1d6.png') no-repeat;
+	background-size: 100%;
+}
+.background3{
+	background: url('http://pic.doggieye.com/20200421/f1c10b1980aa4d2b9558f81ad11ada5e.png') no-repeat;
+	background-size: 100%;
+}
 .bg1{
-	background: url('http://pic.doggieye.com/20200323/fea0960f310c417d854d7d29eeb856bb.png') no-repeat;
+	background: url('http://pic.doggieye.com/20200421/b22e94785fdc4ff7b9a3a244a72596f5.png') no-repeat;
 	background-size: 100%;
 }
 .bg2{
-	background: url('http://pic.doggieye.com/20200323/f0c0a519d7c3462ea9cae07261e27ff4.png') no-repeat;
+	background: url('http://pic.doggieye.com/20200421/03665e6f5d554840b5733f02410eeea1.png') no-repeat;
 	background-size: 100%;
 }
 .bg3{
-	background: url('http://pic.doggieye.com/20200323/7434c41354a84d01ac14b977809de7ce.png') no-repeat;
+	background: url('http://pic.doggieye.com/20200421/9750184ab4d14747b751d0257200ddcb.png') no-repeat;
 	background-size: 100%;
 }
 .color1{
@@ -156,21 +170,16 @@
 			}
 		}
 		.head_content{
-			width:630upx;
-			height:429upx;
-			// background:#FF97D9;
+			width:654upx;
+			height:400upx;
+			overflow: hidden;
 			box-shadow:0px 10upx 29upx 3upx rgba(83,160,232,0.15);
 			border-radius:30upx;
 			margin: 26upx auto;
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-			align-items:flex-start;
-			flex-wrap: wrap;
 			.translation{
 				width: 212upx;
 				height: 76upx;
-				margin: 0 auto;
+				margin-left: 60upx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -188,12 +197,16 @@
 				}
 			}
 			.name{
+				display: inline-block;
 				height:110upx;
 				font-size:64upx;
+				min-width: 200upx;
 				font-weight:bold;
-				margin: 30upx auto -20upx;
+				color:#FFFFFF;
 				text-align: center;
 				line-height: 100upx;
+				margin: 50upx 0 30upx;
+				margin-left: 60upx;
 				background: url('http://pic.doggieye.com/20200420/d5ad11c11de04adabdd32b847653566e.png');
 				background-size: 100% 100%;
 				background-repeat: repeat-x;
@@ -207,12 +220,18 @@
 				text-align: center;
 			}
 			.noon{
-				width:100%;
-				height:40upx;
-				font-size:32upx;
-				line-height: 40upx;
-				margin: 10upx auto 30upx;
-				text-align: center;
+				width: 100%;
+				view{
+					display: inline-block;
+					min-width:106upx;
+					height:40upx;
+					font-size:32upx;
+					line-height: 40upx;
+					margin: 10upx auto 40upx;
+					padding-left: 60upx;
+					color: #FFFFFF;
+					text-align: center;
+				}
 			}
 		}
 	}
