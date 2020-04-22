@@ -27,7 +27,7 @@
 			</view>
 		</view>
 		<view class="nameList">
-			<view class="name" v-for="(item,index) in data" :key="index">
+			<view class="name" v-for="(item,index) in data" :key="index" @click="namesDetails(item)">
 				<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" v-if="item.sex==1" style="background:#E2F1FF;"></image>
 				<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" v-if="item.sex==2" style="background:rgba(247,222,255,1);"></image>
 				<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" v-if="item.sex==3" style="background:#FFE595;"></image>
@@ -54,7 +54,12 @@
 			this.getInfo()
 		},
 		methods: {	
-			goBack:function(){
+			namesDetails:function(e){
+				uni.navigateTo({
+					url:"namesDetails?englishName="+e.englishName
+				})
+			},
+			goback:function(){
 				uni.navigateBack({
 				    delta: 1
 				});
@@ -81,15 +86,15 @@
 
 <style scoped lang="scss">
 .sex1{
-	background: url("http://pic.doggieye.com/20200417/c238414221254325940ced74a1fee7f1.png");
+	background: url("http://pic.doggieye.com/20200417/c238414221254325940ced74a1fee7f1.png") no-repeat;
 	background-size: 100%;
 }
 .sex2{
-	background: url("http://pic.doggieye.com/20200320/8445b2e16cfd4f6a825025d6987214be.png");
+	background: url("http://pic.doggieye.com/20200320/8445b2e16cfd4f6a825025d6987214be.png") no-repeat;
 	background-size: 100%;
 }
 .sex3{
-	background: url("http://pic.doggieye.com/20200417/d248b6777d4940c985a02bcbb1c9019b.png");
+	background: url("http://pic.doggieye.com/20200417/d248b6777d4940c985a02bcbb1c9019b.png") no-repeat;
 	background-size: 100%;
 }
 .nameList{
@@ -120,6 +125,12 @@
 				display: flex;
 				justify-content: space-between;
 				line-height: 50upx;
+				>view:first-child{
+					width: 300upx;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
 			}
 		}
 	}

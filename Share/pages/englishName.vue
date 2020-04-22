@@ -357,6 +357,12 @@
 			>view{
 				line-height: 48upx;
 				margin-left: 26upx;
+				>view{
+					width:300upx;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
 				view:first-child{
 					font-size: 34upx;
 				}

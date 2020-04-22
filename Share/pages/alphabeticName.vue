@@ -19,7 +19,7 @@
 				</view>
 				<view class="details">
 					<view><view>{{item.englishName}}</view><view style="color: #FFB400;" v-if="item.sex==3">中性</view><view style="color: #FF97D9;" v-if="item.sex==2">女生</view><view style="color: #53A0E8;" v-if="item.sex==1">男生</view></view>
-					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.clickNumber}}万人使用</view></view>
+					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.usageNumber}}万人使用</view></view>
 				</view>
 			</view>
 		</view>
@@ -157,6 +157,12 @@
 				display: flex;
 				justify-content: space-between;
 				line-height: 50upx;
+				>view:first-child{
+					width: 300upx;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
 			}
 		}
 	}
