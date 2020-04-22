@@ -66,18 +66,12 @@
 			},
 			getInfo:function(){
 				uni.showLoading()
-				var timeToast=setTimeout(function () {
-				 	toast('网络连接超时')
-					uni.hideLoading()
-				}, 15000);
 				post("/api/game/englishName/RandomName",{sex:this.sex}).then((res)=>{
 					this.data=res[1].data.data
 					uni.hideLoading()
-					clearTimeout(timeToast)
 				}).catch((res)=>{
 					uni.hideLoading()
 					toast(res[1].data.msg)
-					clearTimeout(timeToast)
 				})
 			}
 		}
@@ -162,13 +156,11 @@
 		height:360upx;
 		background:rgba(255,255,255,1);
 		box-shadow:0px 5upx 29upx 3upx rgba(83,160,232,0.2);
-		border-radius:30upx;
 		margin: 16upx auto;
 		text-align: center;
 		image{
 			width: 230upx;
 			height: 200upx;
-			border-radius: 50%;
 			margin: 34upx auto;
 		}
 		view{

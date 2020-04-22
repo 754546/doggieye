@@ -1,8 +1,10 @@
 <template>
 	<view class="content">
 		<view class="head">
-			<image src="../static/goback.png" @click="goback"></image>
-			<b>{{data.englishName}}</b>
+			<view @click="goback">
+				<image src="../static/goback.png"></image>
+			</view>
+			<view>{{data.englishName}}</view>
 		</view>
 		<view class="container">
 			<view :class="{'head_content':true,'background1':data.sex=='1','background2':data.sex=='2','background3':data.sex=='3'}">
@@ -152,19 +154,17 @@
 				margin: 10upx 0;
 			}
 			>view{
-				overflow: hidden;
+				display: flex;
 				width: 100%;
 				padding: 16upx 0;
 				line-height: 40upx;
 				view:first-child{
 					color: #999;
 					width: 150upx;
-					float: left;
 					font-size:28upx;
 				}
 				view:last-child{
 					max-width: 480upx;
-					float: left;
 					font-size:28upx;
 				}
 			}
@@ -198,9 +198,14 @@
 			}
 			.name{
 				display: inline-block;
+				
 				height:110upx;
 				font-size:64upx;
 				min-width: 200upx;
+				max-width: 400upx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 				font-weight:bold;
 				color:#FFFFFF;
 				text-align: center;
@@ -229,6 +234,10 @@
 					line-height: 40upx;
 					margin: 10upx auto 40upx;
 					padding-left: 60upx;
+					max-width: 400upx;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 					color: #FFFFFF;
 					text-align: center;
 				}
@@ -236,27 +245,37 @@
 		}
 	}
 }
-
-
 .head{
-	height: 160upx;
+	height: 168upx;
 	width: 100%;
 	background: url('http://pic.doggieye.com/20200316/5da8920f66d54cfb8f47993b682919a4.png');
 	background-size: 100%;
 	text-align: center;
-	line-height: 160upx;
+	line-height: 168upx;
 	font-size: 36upx;
 	font-family:PingFang SC;
 	font-weight:600;
 	letter-spacing: 2px;
-	position: relative;
+	>view:first-child{
+		width: 100upx;
+		height: 168upx;
+		line-height:168upx;
+		display: inline-block;
+		position: absolute;
+		justify-content: center;
+		top:0;
+		left:0;
+	}
+	>view:last-child{
+		width: 400upx;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		margin: 0 auto;
+	}
 	image{
 		width:28upx;
 		height: 28upx;
-		float: left;
-		position: absolute;
-		top: 66upx;
-		left: 24upx;
 	}
 }
 </style>

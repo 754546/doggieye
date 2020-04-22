@@ -48,20 +48,14 @@
 		methods: {
 			getInfo:function(){
 				uni.showLoading()
-				var timeToast=setTimeout(function () {
-				 	toast('网络连接超时')
-					uni.hideLoading()
-				}, 15000);
 				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo": {"isGirlTop":1}}).then((res)=>{
 					for (var i=0;i<res[1].data.data.list.length;i++) {
 						this.data.push(res[1].data.data.list[i])
 					}
 					this.totalPage=res[1].data.data.totalPage;
-					clearTimeout(timeToast)
 					uni.hideLoading()
 				}).catch((res)=>{
 					toast(res[1].data.msg)
-					clearTimeout(timeToast)
 					uni.hideLoading()
 				})
 			},

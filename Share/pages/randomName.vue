@@ -6,6 +6,9 @@
 			</view>
 			<view>随机取名</view>
 		</view>
+		<view class="img">
+			<image src="http://pic.doggieye.com/20200422/0079e2fd05bd425186d41aad7f3c5a7c.png" mode="widthFix"></image>
+		</view>
 		<radio-group  class="radio-groups" @change="sexFun">
 			<view class="sex_content">
 					<view :class="{'sex':true,'big':sex==1}" @click="radios(1)">
@@ -117,6 +120,16 @@
 <style scoped lang="scss">
 .big{
 	transform: scale(1.1,1.1);
+}
+.img{
+	width: 100%;
+	height: 120upx;
+	margin: 76upx 0 50upx;
+	image{
+		display: block;
+		width: 376upx;
+		margin: 0 auto;
+	}
 }
 .animation{
 	width: 100%;
