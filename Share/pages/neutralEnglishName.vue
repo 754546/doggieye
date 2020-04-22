@@ -13,7 +13,7 @@
 				</view>
 				<view class="details">
 					<view><view>{{item.englishName}}</view><view style="color: #FFA508;">中性 NO.{{index+1}}</view></view>
-					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{data.usageNumber}}万人使用</view></view>
+					<view><view>{{item.chineseName}}</view><view style="color: #999999;">{{item.usageNumber}}万人使用</view></view>
 				</view>
 			</view>
 		</view>
@@ -48,22 +48,16 @@
 		methods: {
 			getInfo:function(){
 				uni.showLoading()
-				var timeToast=setTimeout(function () {
-				 	toast('网络连接超时')
-					uni.hideLoading()
-				}, 15000);
 				post('/api/game/englishName/list',{"curPage":this.pageSize,"limit":this.pageNumber,"vo":{"isNeutralTop": 1,}
 				}).then((res)=>{
 					for (var i=0;i<res[1].data.data.list.length;i++) {
 						this.data.push(res[1].data.data.list[i])
 					}
 					this.totalPage=res[1].data.data.totalPage;
-					clearTimeout(timeToast)
 					uni.hideLoading()
 				}).catch((res)=>{
 					uni.hideLoading()
 					toast(res[1].data.msg)
-					clearTimeout(timeToast)
 				})
 			},
 			top:function(){

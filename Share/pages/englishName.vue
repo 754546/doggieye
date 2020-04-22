@@ -90,9 +90,9 @@
 			<view class="list">
 				<view class="details" v-for="(item,key) in list1 " :key="key" @click="Details(item)">
 					<view class="left_details">
-						<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" v-if="item.sex==1"></image>
-						<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" v-if="item.sex==2"></image>
-						<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" v-if="item.sex==3"></image>
+						<image src="http://pic.doggieye.com/20200417/5d66bec2cbd940e5a2c94e8bdffb7991.png" v-if="item.sex==1" style="background:#E2F1FF;"></image>
+						<image src="http://pic.doggieye.com/20200417/b43b73c4f610489b86c62ff3fc3e4b89.png" v-if="item.sex==2" style="background:rgba(247,222,255,1);"></image>
+						<image src="http://pic.doggieye.com/20200417/e3f25e11cfbc488fab1989cd850538a9.png" v-if="item.sex==3" style="background:#FFE595;"></image>
 						<view>
 							<view>{{item.englishName}}</view>
 							<view>{{item.chineseName}}</view>
@@ -117,10 +117,6 @@
 
 <script>
 	import {post,toast} from '@/index';
-	var u = navigator.userAgent;
-	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器 
-	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-	
 	function setupWebViewJavascriptBridge(callback) {
 		if (window.WebViewJavascriptBridge) {
 			callback(WebViewJavascriptBridge)
@@ -167,23 +163,20 @@
 			this.size+=10;
 			this.circulates(1)
 		},
-		onLoad() {
-			uni.getSystemInfo({success: (res) => {
-				console.log(res.statusBarHeight)
-			}})
-		},
 		methods: {
 			goback:function(){
-				setupWebViewJavascriptBridge(function(bridge) {
-					function fun1(e){
-						console.log("回到首页")
-					}
-					if (isAndroid) {
-						window.android.goBack('fun1');
-					} else {
-						bridge.callHandler('goHome', function(response) {})
-					}
-				})    
+				var u=navigator.userAgent;
+				var isiOS=!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+				function fun1(e){
+				 console.log(e)
+				}
+				if(isiOS){
+					setupWebViewJavascriptBridge(function(bridge) {
+						 bridge.callHandler('goHome', function(response) {})
+					})
+				}else{
+					window.android.goBack('fun1');
+				}
 			},
 			Details:function(e){
 				uni.navigateTo({
@@ -206,10 +199,6 @@
 				that.list=[]
 				if(e.length>0){
 					uni.showLoading()
-					var timeToast=setTimeout(function () {
-						toast('网络连接超时')
-						uni.hideLoading()
-					}, 15000);
 					post("/api/game/englishName/getListByChineseName",e).then((res)=>{
 						if(res[1].data.code==200){
 							that.data=res[1].data.data;
@@ -232,11 +221,9 @@
 							that.list1=[];
 							that.size=0;
 							that.circulates()
-							clearTimeout(timeToast)
 						}
 						uni.hideLoading();
 					}).catch((res)=>{
-						clearTimeout(timeToast)
 						toast(res[1].data.msg)
 						uni.hideLoading();
 					})
